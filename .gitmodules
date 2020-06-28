@@ -1,0 +1,3 @@
+[submodule "KafkaModels"]
+	path = KafkaModels
+	url = git@github.com:mrjamiebowman-blog/KafkaModels.git
