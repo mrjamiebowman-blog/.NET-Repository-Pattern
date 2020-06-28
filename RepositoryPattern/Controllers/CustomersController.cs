@@ -2,16 +2,19 @@
 using Microsoft.Extensions.Logging;
 using RepositoryPattern.Models;
 using System.Diagnostics;
+using RepositoryPattern.Data.Services;
 
 namespace RepositoryPattern.Controllers
 {
     public class CustomersController : Controller
     {
         private readonly ILogger<CustomersController> _logger;
+        private readonly IDataService _dataService;
 
-        public CustomersController(ILogger<CustomersController> logger)
+        public CustomersController(ILogger<CustomersController> logger, IDataService dataService)
         {
             _logger = logger;
+            _dataService = dataService;
         }
 
         public IActionResult Index()

@@ -9,6 +9,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using RepositoryPattern.Data.Services;
+using RepositoryPattern.Data.Repositories;
 
 namespace RepositoryPattern
 {
@@ -27,6 +28,7 @@ namespace RepositoryPattern
             services.AddControllersWithViews();
 
             services.AddTransient<IDataService, DataService>();
+            services.AddTransient<ICustomersRepository, SqlCustomersRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

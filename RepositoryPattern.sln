@@ -3,11 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29905.134
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RepositoryPattern", "RepositoryPattern\RepositoryPattern.csproj", "{14A5E2AE-0FC1-4CB0-A922-78A5BE8A58A5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RepositoryPattern", "RepositoryPattern\RepositoryPattern.csproj", "{14A5E2AE-0FC1-4CB0-A922-78A5BE8A58A5}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KafkaModels", "KafkaModels\KafkaModels.csproj", "{C0C7BB30-FAC2-428A-86C9-DB7FDD175F48}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RepositoryPattern.Data", "RepositoryPattern.Data\RepositoryPattern.Data.csproj", "{8D4CDA34-F4A8-4FAA-99E8-8D0993453DD6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RepositoryPattern.Data", "RepositoryPattern.Data\RepositoryPattern.Data.csproj", "{8D4CDA34-F4A8-4FAA-99E8-8D0993453DD6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RepositoryPattern.Data.Tests", "RepositoryPattern.Data.Tests\RepositoryPattern.Data.Tests.csproj", "{392DA74B-6518-4FBB-A8B8-CE623FB9EF8A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{8D4CDA34-F4A8-4FAA-99E8-8D0993453DD6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8D4CDA34-F4A8-4FAA-99E8-8D0993453DD6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8D4CDA34-F4A8-4FAA-99E8-8D0993453DD6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{392DA74B-6518-4FBB-A8B8-CE623FB9EF8A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{392DA74B-6518-4FBB-A8B8-CE623FB9EF8A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{392DA74B-6518-4FBB-A8B8-CE623FB9EF8A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{392DA74B-6518-4FBB-A8B8-CE623FB9EF8A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
