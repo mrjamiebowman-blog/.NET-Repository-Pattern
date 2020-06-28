@@ -1,7 +1,10 @@
-﻿using KafkaModels.Models.Customer;
+﻿using Dapper;
+using KafkaModels.Models.Customer;
 using RepositoryPattern.Data.Repositories.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace RepositoryPattern.Data.Repositories
@@ -23,9 +26,25 @@ namespace RepositoryPattern.Data.Repositories
             throw new NotImplementedException();
         }
 
-        public Task<List<Customer>> GetCustomersAsync()
+        public async Task<List<Customer>> GetCustomersAsync()
         {
-            throw new NotImplementedException();
+            try
+            {
+                using (IDbConnection conn = GetConnection())
+                {
+                    conn.Open();
+
+                    var parameters = new DynamicParameters();
+                    //parameters.Add("@PARAM", "");
+
+                    var data = (await conn.QueryAsync<Customer>(StoredProcedures.GetCustomers, parameters, commandType: CommandType.StoredProcedure)).ToList();
+                    return data;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public Task SaveAsync(Customer model)

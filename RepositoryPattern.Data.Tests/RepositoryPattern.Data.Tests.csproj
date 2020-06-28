@@ -13,4 +13,9 @@
     <PackageReference Include="coverlet.collector" Version="1.0.1" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\KafkaModels\KafkaModels.csproj" />
+    <ProjectReference Include="..\RepositoryPattern.Data\RepositoryPattern.Data.csproj" />
+  </ItemGroup>
+
 </Project>

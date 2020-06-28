@@ -4,7 +4,8 @@ using System.Text;
 
 namespace RepositoryPattern.Data.Repositories
 {
-    public class BaseMongoRepository
+    public class BaseMongoRepository : BaseRepository
     {
+
     }
 }

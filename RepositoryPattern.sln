@@ -11,6 +11,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RepositoryPattern.Data", "R
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RepositoryPattern.Data.Tests", "RepositoryPattern.Data.Tests\RepositoryPattern.Data.Tests.csproj", "{392DA74B-6518-4FBB-A8B8-CE623FB9EF8A}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Files", "Files", "{468642FA-0290-4F72-ACE3-B0B91B3B0E82}"
+	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
+		docker-compose.yaml = docker-compose.yaml
+		README.md = README.md
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
