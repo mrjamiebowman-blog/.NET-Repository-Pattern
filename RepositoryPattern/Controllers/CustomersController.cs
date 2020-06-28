@@ -1,19 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using RepositoryPattern.Models;
+using System.Diagnostics;
 
 namespace RepositoryPattern.Controllers
 {
-    public class CustomerController : Controller
+    public class CustomersController : Controller
     {
-        private readonly ILogger<CustomerController> _logger;
+        private readonly ILogger<CustomersController> _logger;
 
-        public CustomerController(ILogger<CustomerController> logger)
+        public CustomersController(ILogger<CustomersController> logger)
         {
             _logger = logger;
         }
