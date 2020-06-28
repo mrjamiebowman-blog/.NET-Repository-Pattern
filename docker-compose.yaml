@@ -16,3 +16,12 @@ services:
       MSSQL_PID: 'Developer'
     networks:
       - netrepopattern
+  postgresql:
+    image: postgres
+    container_name: mrjb_repopattern_postgresql
+    restart: always
+    environment:
+      POSTGRES_USER: 'dbuser'
+      POSTGRES_PASSWORD: '555gpah4jzetczpf'
+    networks:
+      - netrepopattern
