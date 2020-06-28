@@ -1,0 +1,18 @@
+version: '3.3'
+
+networks:
+  netrepopattern:
+
+services:   
+  mssql:
+    image: mcr.microsoft.com/mssql/server
+    container_name: mrjb_repopattern_mssql
+    ports:
+      - 1443:1443
+    restart: always
+    environment:
+      ACCEPT_EULA: 'Y'
+      SA_PASSWORD: '555gpah4jzetczpf'
+      MSSQL_PID: 'Developer'
+    networks:
+      - netrepopattern
