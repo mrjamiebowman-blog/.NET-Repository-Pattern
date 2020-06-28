@@ -1,5 +1,8 @@
-﻿using System;
-using RepositoryPattern.Data.Repositories;
+﻿using KafkaModels.Models.Customer;
+using RepositoryPattern.Data.Repositories.Interfaces;
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace RepositoryPattern.Data.Services
 {
@@ -12,9 +15,38 @@ namespace RepositoryPattern.Data.Services
 
         }
 
-        public DataService(ICustomersRepository customersRepository)
+        public DataService(ICustomersRepository customersRepository) : this()
         {
             _customersRepository = customersRepository;
         }
+
+        #region Customers
+
+        public Task<Customer> CreateCustomerAsync(Customer model)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task DeleteCustomerByIdAsync(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<Customer> GetCustomerByIdAsync(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public async Task<List<Customer>> GetCustomersAsync()
+        {
+             return await _customersRepository.GetCustomersAsync();
+        }
+
+        public Task SaveCustomerAsync(Customer model)
+        {
+            throw new NotImplementedException();
+        }
+
+        #endregion
     }
 }

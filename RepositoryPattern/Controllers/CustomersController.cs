@@ -1,7 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using RepositoryPattern.Models;
 using System.Diagnostics;
+using System.Threading.Tasks;
 using RepositoryPattern.Data.Services;
 
 namespace RepositoryPattern.Controllers
@@ -17,11 +19,19 @@ namespace RepositoryPattern.Controllers
             _dataService = dataService;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            // load all customers
+            try
+            {
+                // load all customers
+                var data = await _dataService.GetCustomersAsync();
 
-            return View();
+                return View(data);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Unable to load Customers. Please refresh the page.");
+            }
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

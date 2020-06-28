@@ -1,14 +1,13 @@
-﻿using System;
+﻿using KafkaModels.Models.Customer;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
-using KafkaModels.Models.Customer;
 
-namespace RepositoryPattern.Data.Repositories
+namespace RepositoryPattern.Data.Repositories.Interfaces
 {
     public interface ICustomersRepository
     {
         Task<Customer> GetByIdAsync(int id);
+        Task<List<Customer>> GetCustomersAsync();
         Task DeleteByIdAsync(int id);
         Task<Customer> CreateAsync(Customer model);
         Task SaveAsync(Customer model);
