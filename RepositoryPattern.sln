@@ -9,13 +9,25 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KafkaModels", "KafkaModels\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RepositoryPattern.Data", "RepositoryPattern.Data\RepositoryPattern.Data.csproj", "{8D4CDA34-F4A8-4FAA-99E8-8D0993453DD6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RepositoryPattern.Data.Tests", "RepositoryPattern.Data.Tests\RepositoryPattern.Data.Tests.csproj", "{392DA74B-6518-4FBB-A8B8-CE623FB9EF8A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RepositoryPattern.Data.Tests", "RepositoryPattern.Data.Tests\RepositoryPattern.Data.Tests.csproj", "{392DA74B-6518-4FBB-A8B8-CE623FB9EF8A}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Files", "Files", "{468642FA-0290-4F72-ACE3-B0B91B3B0E82}"
 	ProjectSection(SolutionItems) = preProject
 		.gitignore = .gitignore
-		docker-compose.yaml = docker-compose.yaml
 		README.md = README.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docker", "docker", "{C6B30454-A540-46D1-B1A7-15EEFE027DF9}"
+	ProjectSection(SolutionItems) = preProject
+		docker-compose.yaml = docker-compose.yaml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "mssql", "mssql", "{E00D0C68-6F40-4887-8971-2FCFC02C078B}"
+	ProjectSection(SolutionItems) = preProject
+		docker\mssql\db-init.sh = docker\mssql\db-init.sh
+		docker\mssql\db-init.sql = docker\mssql\db-init.sql
+		docker\mssql\Dockerfile = docker\mssql\Dockerfile
+		docker\mssql\entrypoint.sh = docker\mssql\entrypoint.sh
 	EndProjectSection
 EndProject
 Global
@@ -43,6 +55,9 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{E00D0C68-6F40-4887-8971-2FCFC02C078B} = {C6B30454-A540-46D1-B1A7-15EEFE027DF9}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {8D196391-0C94-4093-B2EE-BC805AAADA90}

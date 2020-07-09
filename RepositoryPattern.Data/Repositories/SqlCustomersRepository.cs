@@ -11,19 +11,66 @@ namespace RepositoryPattern.Data.Repositories
 {
     public class SqlCustomersRepository : BaseSqlRepository, ICustomersRepository
     {
-        public Task<Customer> CreateAsync(Customer model)
+        public async Task<Customer> CreateAsync(Customer model)
         {
-            throw new NotImplementedException();
+            try
+            {
+                using (IDbConnection conn = GetConnection())
+                {
+                    conn.Open();
+
+                    var parameters = new DynamicParameters();
+                    //parameters.Add("@PARAM", "");
+
+                    var data = (await conn.QueryAsync<Customer>(StoredProcedures.CreateCustomer, parameters, commandType: CommandType.StoredProcedure)).SingleOrDefault();
+                    return data;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
-        public Task DeleteByIdAsync(int id)
+        public async Task DeleteByIdAsync(int id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                using (IDbConnection conn = GetConnection())
+                {
+                    conn.Open();
+
+                    var parameters = new DynamicParameters();
+                    //parameters.Add("@PARAM", "");
+
+                    await conn.QueryAsync(StoredProcedures.DeleteCustomer, parameters, commandType: CommandType.StoredProcedure);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
-        public Task<Customer> GetByIdAsync(int id)
+        public async Task<Customer> GetByIdAsync(int id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                using (IDbConnection conn = GetConnection())
+                {
+                    conn.Open();
+
+                    var parameters = new DynamicParameters();
+                    //parameters.Add("@PARAM", "");
+
+                    var data = (await conn.QueryAsync<Customer>(StoredProcedures.GetCustomer, parameters, commandType: CommandType.StoredProcedure)).SingleOrDefault();
+                    return data;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public async Task<List<Customer>> GetCustomersAsync()
@@ -47,9 +94,25 @@ namespace RepositoryPattern.Data.Repositories
             }
         }
 
-        public Task SaveAsync(Customer model)
+        public async Task<Customer> SaveAsync(Customer model)
         {
-            throw new NotImplementedException();
+            try
+            {
+                using (IDbConnection conn = GetConnection())
+                {
+                    conn.Open();
+
+                    var parameters = new DynamicParameters();
+                    //parameters.Add("@PARAM", "");
+
+                    var data = (await conn.QueryAsync<Customer>(StoredProcedures.SaveCustomer, parameters, commandType: CommandType.StoredProcedure)).SingleOrDefault();
+                    return data;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
     }
 }

@@ -25,7 +25,11 @@ namespace RepositoryPattern.Data.Repositories
 
         public static class StoredProcedures
         {
-            public static string GetCustomers = $"{dbSchema}.uspGetCustomers";
+            public static string CreateCustomer = $"{dbSchema}.uspCustomerCreate";
+            public static string GetCustomer = $"{dbSchema}.uspCustomerGet";
+            public static string DeleteCustomer = $"{dbSchema}.uspCustomerDelete";
+            public static string SaveCustomer = $"{dbSchema}.uspCustomerSave";
+            public static string GetCustomers = $"{dbSchema}.uspCustomersGet";
         }
     }
 }

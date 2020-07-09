@@ -28,7 +28,7 @@ namespace RepositoryPattern.Data.Tests.Repositories
             throw new NotImplementedException();
         }
 
-        public Task SaveAsync(Customer model)
+        public Task<Customer> SaveAsync(Customer model)
         {
             throw new NotImplementedException();
         }
