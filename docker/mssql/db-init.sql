@@ -110,7 +110,7 @@ GO
 -- =============================================
 CREATE PROCEDURE [dbo].[uspAddressUpsert]
 	-- Add the parameters for the stored procedure here
-   @AddressId INT = NULL,
+    @AddressId INT = NULL OUTPUT,
 	@Street1 VARCHAR(100),
 	@Street2 VARCHAR(100),
 	@City VARCHAR(100),

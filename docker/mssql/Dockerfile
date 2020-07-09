@@ -1,6 +1,6 @@
 FROM mcr.microsoft.com/mssql/server:2019-CU5-ubuntu-16.04
-USER root
 COPY . /
+USER root
 RUN chmod +x /db-init.sh
 USER mssql
 CMD /bin/bash ./entrypoint.sh
