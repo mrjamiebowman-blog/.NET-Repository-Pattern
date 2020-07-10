@@ -248,6 +248,250 @@ END
 GO
 
 
+-- =============================================
+-- Author:		Jamie Bowman
+-- Create date: 07/09/2020
+-- Description:	Customer Delete
+-- =============================================
+CREATE PROCEDURE [dbo].[uspCustomerDelete]
+	@CustomerId INT
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+	DELETE FROM dbo.Customers WHERE CustomerId = @CustomerId
+END
+
+
+-- =============================================
+-- Author:		Jamie Bowman
+-- Create date: 07/09/2020
+-- Description:	Returns a single Customer
+-- =============================================
+CREATE PROCEDURE [dbo].[uspCustomerGet]
+	@CustomerId INT
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+    -- Insert statements for procedure here
+
+	SELECT
+		 c.CustomerId
+		,c.FirstName
+		,c.LastName
+		,c.Email
+		,ba.AddressId
+		,ba.FirstName
+		,ba.LastName
+		,ba.Phone
+		,ba.Street1
+		,ba.Street2
+		,ba.City
+		,ba.State
+		,ba.Country
+		,sa.AddressId
+		,sa.FirstName
+		,sa.LastName
+		,sa.Street1
+		,sa.Street2
+		,sa.City
+		,sa.State
+		,sa.Country
+		FROM dbo.Customers c
+			LEFT JOIN dbo.Addresses ba ON ba.AddressId = c.BillingAddressId
+			LEFT JOIN dbo.Addresses sa ON sa.AddressId = c.ShippingAddressId
+		WHERE
+			c.CustomerId = @CustomerId
+
+END
+
+
+
+-- =============================================
+-- Author:		Jamie Bowman
+-- Create date: 07/09/2020
+-- Description:	Search Customers
+-- =============================================
+CREATE PROCEDURE [dbo].[uspCustomersGet]
+	@FirstName VARCHAR(100),
+	@LastName VARCHAR(100),
+	@Email VARCHAR(100),
+	@City VARCHAR(100),
+	@State VARCHAR(100),
+	@Country VARCHAR(100),
+
+	/* Pagination Parameters */
+    @PageNo INT = 1,
+    @PageSize INT = 25,
+
+    /* Sorting Parameters */
+    @SortColumn NVARCHAR(20) = 'CustomerId',
+    @SortOrder NVARCHAR(4) = 'ASC'
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+SET NOCOUNT ON;
+
+DECLARE @DEBUG BIT = 0
+
+/* TESTING */
+--DECLARE @FirstName VARCHAR(100) = NULL
+--DECLARE @LastName VARCHAR(100) = NULL
+--DECLARE @Email VARCHAR(100) = NULL
+--DECLARE @City VARCHAR(100) = NULL
+--DECLARE @State VARCHAR(100) = NULL
+--DECLARE @Country VARCHAR(100) = NULL
+
+--/* Pagination Parameters */
+--DECLARE @PageNo INT = 1
+--DECLARE @PageSize INT = 100
+
+--/* Sorting Parameters */
+--DECLARE @SortColumn NVARCHAR(20) = 'FirstName'
+--DECLARE @SortOrder NVARCHAR(4) = 'ASC'
+/* TESTING */
+
+
+/* both */
+SET @FirstName = COALESCE(NULLIF(@FirstName,''), NULL)
+SET @LastName = COALESCE(NULLIF(@LastName,''), NULL)
+SET @Email = COALESCE(NULLIF(@Email,''), NULL)
+SET @City = COALESCE(NULLIF(@City,''), NULL)
+SET @State = COALESCE(NULLIF(@State,''), NULL)
+SET @Country = COALESCE(NULLIF(@Country,''), NULL)
+
+/* page no. & page size */
+SET @PageNo = COALESCE(NULLIF(@PageNo,''), 1)
+SET @PageSize = COALESCE(NULLIF(@PageSize, ''), 25)
+
+/* sorting and ordering */
+SET @SortColumn = COALESCE(NULLIF(@SortColumn,''), 'LastName')
+SET @SortOrder = COALESCE(NULLIF(@SortOrder, ''), 'ASC')
+
+
+/* local variables for modification */
+DECLARE @lSortColumn NVARCHAR(20),
+   @lPageNbr INT,
+   @lPageSize INT,
+   @lSortCol NVARCHAR(20),
+   @lFirstRec INT,
+   @lLastRec INT,
+   @lTotalRows INT
+
+SET @lPageNbr = @PageNo
+SET @lPageSize = @PageSize
+SET @lSortCol = LTRIM(RTRIM(@SortColumn))
+
+SET @lSortColumn = LTRIM(RTRIM(@SortColumn))
+SET @lFirstRec = ( @lPageNbr - 1 ) * @lPageSize
+SET @lLastRec = ( @lPageNbr * @lPageSize + 1 )
+SET @lTotalRows = @lFirstRec - @lLastRec + 1
+
+
+/* drop temp table if it exists */
+IF OBJECT_ID(N'tempdb..#FilteredData') IS NOT NULL
+BEGIN
+	DROP TABLE #FilteredData
+END
+
+
+;WITH CteData AS (
+	SELECT ROW_NUMBER() OVER (ORDER BY
+
+	/* FIRST NAME */
+	CASE WHEN (@lSortColumn = 'FirstName' AND @SortOrder = 'ASC') THEN c.FirstName END ASC,
+	CASE WHEN (@lSortColumn = 'FirstName' AND @SortOrder = 'DESC') THEN c.FirstName END DESC,
+
+	/* LAST NAME */
+	CASE WHEN (@lSortColumn = 'LastName' AND @SortOrder = 'ASC') THEN c.LastName END ASC,
+	CASE WHEN (@lSortColumn = 'LastName' AND @SortOrder = 'DESC') THEN c.LastName END DESC,
+
+	/* EMAIL */
+	CASE WHEN (@lSortColumn = 'Email' AND @SortOrder = 'ASC') THEN c.Email END ASC,
+	CASE WHEN (@lSortColumn = 'Email' AND @SortOrder = 'DESC') THEN c.Email END DESC
+
+  )  AS RowNumber
+	,c.CustomerId
+	,c.FirstName
+	,c.LastName
+	,c.Email
+	,c.BillingAddressId
+	,c.ShippingAddressId
+	FROM dbo.Customers c
+WHERE
+	/* search */
+	(@FirstName IS NULL OR c.FirstName LIKE '%' + @FirstName + '%')
+	AND (@LastName IS NULL OR c.LastName LIKE '%' + @LastName + '%')
+	AND (@Email IS NULL OR c.Email LIKE '%' + @Email + '%')
+	)
+
+    SELECT * INTO #FilteredData FROM CteData
+
+    SELECT
+		 RowNumber
+		,d.CustomerId
+		,d.FirstName
+		,d.LastName
+		,d.Email
+		,ba.AddressId
+		,ba.FirstName
+		,ba.LastName
+		,ba.Phone
+		,ba.Street1
+		,ba.Street2
+		,ba.City
+		,ba.State
+		,ba.Country
+		,sa.AddressId
+		,sa.FirstName
+		,sa.LastName
+		,sa.Street1
+		,sa.Street2
+		,sa.City
+		,sa.State
+		,sa.Country
+    FROM #FilteredData d
+		LEFT JOIN dbo.Addresses ba ON ba.AddressId = d.BillingAddressId
+		LEFT JOIN dbo.Addresses sa ON sa.AddressId = d.ShippingAddressId
+	WHERE
+		RowNumber > @lFirstRec
+		AND RowNumber < @lLastRec
+			ORDER BY RowNumber ASC
+
+	
+    /* return dataset of info */
+    DECLARE @PageCount INT, @TotalRowCount INT, @DIFF INT
+
+    SET @TotalRowCount = (SELECT COUNT(*) FROM #FilteredData)
+    SET @PageCount = (@TotalRowCount / @PageSize)
+
+    SET @DIFF = (@TotalRowCount - (@PageCount * @PageSize))
+    IF (@DIFF > 0)
+  BEGIN
+  SET @PageCount = @PageCount + 1
+    END
+
+	SELECT
+		COUNT(*) AS ItemCount
+		,@PageNo as PageNo
+		,@PageSize as PageSize
+		,@SortColumn as SortColumn
+		,@SortOrder as SortOrder
+		,@PageCount as PageCount
+	FROM #FilteredData
+	
+END
+
+
+
 /* seed data */
 DECLARE @AddressId1 INT,
 		@AddressId2 INT
