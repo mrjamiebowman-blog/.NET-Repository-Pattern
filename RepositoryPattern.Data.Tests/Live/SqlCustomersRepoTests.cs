@@ -1,12 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using RepositoryPattern.Data.Repositories;
 using System.Threading.Tasks;
-using RepositoryPattern.Data.Repositories;
-using RepositoryPattern.Data.Repositories.Interfaces;
-using RepositoryPattern.Data.Services;
-using RepositoryPattern.Data.Tests.Repositories;
-using Xunit;
 
 namespace RepositoryPattern.Data.Tests.Live
 {
