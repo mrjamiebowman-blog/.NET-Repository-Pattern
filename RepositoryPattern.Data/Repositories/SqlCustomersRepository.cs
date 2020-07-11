@@ -20,7 +20,13 @@ namespace RepositoryPattern.Data.Repositories
                     conn.Open();
 
                     var parameters = new DynamicParameters();
-                    //parameters.Add("@PARAM", "");
+                    parameters.Add("@FirstName", model.FirstName);
+                    parameters.Add("@LastName", model.LastName);
+                    parameters.Add("@Email", model.Email);
+                    if (model.BillingAddress.AddressId.HasValue)
+                        parameters.Add("@BillingAddressId", model.BillingAddress.AddressId);
+                    if (model.ShippingAddress.AddressId.HasValue)
+                        parameters.Add("@ShippingAddressId", model.ShippingAddress.AddressId);
 
                     var data = (await conn.QueryAsync<Customer>(StoredProcedures.CreateCustomer, parameters, commandType: CommandType.StoredProcedure)).SingleOrDefault();
                     return data;
@@ -41,7 +47,7 @@ namespace RepositoryPattern.Data.Repositories
                     conn.Open();
 
                     var parameters = new DynamicParameters();
-                    //parameters.Add("@PARAM", "");
+                    parameters.Add("@CustomerId", id);
 
                     await conn.QueryAsync(StoredProcedures.DeleteCustomer, parameters, commandType: CommandType.StoredProcedure);
                 }
@@ -61,7 +67,7 @@ namespace RepositoryPattern.Data.Repositories
                     conn.Open();
 
                     var parameters = new DynamicParameters();
-                    //parameters.Add("@PARAM", "");
+                    parameters.Add("@CustomerId", id);
 
                     var data = (await conn.QueryAsync<Customer>(StoredProcedures.GetCustomer, parameters, commandType: CommandType.StoredProcedure)).SingleOrDefault();
                     return data;
@@ -82,7 +88,12 @@ namespace RepositoryPattern.Data.Repositories
                     conn.Open();
 
                     var parameters = new DynamicParameters();
-                    //parameters.Add("@PARAM", "");
+                    parameters.Add("@FirstName", "");
+                    parameters.Add("@LastName", "");
+                    parameters.Add("@Email", "");
+                    parameters.Add("@City", "");
+                    parameters.Add("@State", "");
+                    parameters.Add("@Country", "");
 
                     var data = (await conn.QueryAsync<Customer>(StoredProcedures.GetCustomers, parameters, commandType: CommandType.StoredProcedure)).ToList();
                     return data;
@@ -103,7 +114,13 @@ namespace RepositoryPattern.Data.Repositories
                     conn.Open();
 
                     var parameters = new DynamicParameters();
-                    //parameters.Add("@PARAM", "");
+                    parameters.Add("@FirstName", model.FirstName);
+                    parameters.Add("@LastName", model.LastName);
+                    parameters.Add("@Email", model.Email);
+                    if (model.BillingAddress.AddressId.HasValue)
+                        parameters.Add("@BillingAddressId", model.BillingAddress.AddressId);
+                    if (model.ShippingAddress.AddressId.HasValue)
+                        parameters.Add("@ShippingAddressId", model.ShippingAddress.AddressId);
 
                     var data = (await conn.QueryAsync<Customer>(StoredProcedures.SaveCustomer, parameters, commandType: CommandType.StoredProcedure)).SingleOrDefault();
                     return data;

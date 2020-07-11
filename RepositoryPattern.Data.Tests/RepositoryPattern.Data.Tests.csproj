@@ -18,4 +18,10 @@
     <ProjectReference Include="..\RepositoryPattern.Data\RepositoryPattern.Data.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="appsettings.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>
