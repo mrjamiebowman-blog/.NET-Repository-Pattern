@@ -10,6 +10,6 @@ namespace RepositoryPattern.Data.Repositories.Interfaces
         Task<List<Customer>> GetCustomersAsync();
         Task DeleteByIdAsync(int id);
         Task<Customer> CreateAsync(Customer model);
-        Task<Customer> SaveAsync(Customer model);
+        Task<Customer> SaveAsync(Customer model, bool upsert = true);
     }
 }

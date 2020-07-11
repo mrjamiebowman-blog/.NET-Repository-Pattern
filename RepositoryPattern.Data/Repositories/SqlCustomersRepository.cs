@@ -105,7 +105,7 @@ namespace RepositoryPattern.Data.Repositories
             }
         }
 
-        public async Task<Customer> SaveAsync(Customer model)
+        public async Task<Customer> SaveAsync(Customer model, bool upsert = true)
         {
             try
             {
@@ -114,12 +114,13 @@ namespace RepositoryPattern.Data.Repositories
                     conn.Open();
 
                     var parameters = new DynamicParameters();
+                    parameters.Add("@Upsert", upsert);
                     parameters.Add("@FirstName", model.FirstName);
                     parameters.Add("@LastName", model.LastName);
                     parameters.Add("@Email", model.Email);
-                    if (model.BillingAddress.AddressId.HasValue)
+                    if (model.BillingAddress != null && model.BillingAddress.AddressId.HasValue)
                         parameters.Add("@BillingAddressId", model.BillingAddress.AddressId);
-                    if (model.ShippingAddress.AddressId.HasValue)
+                    if (model.ShippingAddress != null && model.ShippingAddress.AddressId.HasValue)
                         parameters.Add("@ShippingAddressId", model.ShippingAddress.AddressId);
 
                     var data = (await conn.QueryAsync<Customer>(StoredProcedures.SaveCustomer, parameters, commandType: CommandType.StoredProcedure)).SingleOrDefault();
