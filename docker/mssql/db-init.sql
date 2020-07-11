@@ -66,7 +66,7 @@ CREATE PROCEDURE [dbo].[uspCustomerCreate]
 	 @FirstName VARCHAR(100)
 	,@LastName VARCHAR(100)
 	,@Email VARCHAR(255)
-	,@BilliningAddressId INT = NULL
+	,@BillingAddressId INT = NULL
 	,@ShippingAddressId INT = NULL
 AS
 BEGIN
@@ -87,7 +87,7 @@ BEGIN
 		 @FirstName
 		,@LastName
 		,@Email
-		,@BilliningAddressId
+		,@BillingAddressId
 		,@ShippingAddressId
 	)
 
@@ -490,6 +490,77 @@ WHERE
 	
 END
 
+
+-- =============================================
+-- Author:		Jamie Bowman
+-- Create date: 07/11/2020
+-- Description:	Save/update Customer
+-- =============================================
+CREATE PROCEDURE [dbo].[uspCustomerSave]
+	@CustomerId INT,
+	@FirstName VARCHAR(100),
+	@LastName VARCHAR(100),
+	@Email VARCHAR(255),
+	@BillingAddressId INT = null,
+	@ShippingAddressId INT = null,
+	@Upsert BIT = 1
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+	/* testing */
+	--DECLARE @CustomerId INT = 1
+	--DECLARE @FirstName VARCHAR(100) = 'Jamie'
+	--DECLARE @LastName VARCHAR(100) = 'Bowman'
+	--DECLARE @Email VARCHAR(255) = 'test@test.com'
+	--DECLARE @BillingAddressId INT = null
+	--DECLARE @ShippingAddressId INT = null
+	/* testing */
+
+	/* verify if customer exists */
+	IF @CustomerId IS NULL
+	BEGIN
+		INSERT INTO dbo.Customers
+		(
+			 FirstName
+			,LastName
+			,Email
+			,BillingAddressId
+			,ShippingAddressId
+		)
+		VALUES
+		(
+			 @FirstName
+			,@LastName
+			,@Email
+			,@BillingAddressId
+			,@ShippingAddressId
+		)
+		END
+	ELSE
+		BEGIN
+		UPDATE dbo.Customers 
+		SET 
+			 FirstName = @FirstName
+			,LastName = @LastName
+			,Email = @Email
+			,BillingAddressId = @BillingAddressId
+			,ShippingAddressId = @ShippingAddressId
+		WHERE CustomerId = @CustomerId
+	END
+
+	SELECT
+		 c.CustomerId
+		,c.FirstName
+		,c.LastName
+		,c.Email
+		,c.BillingAddressId
+		,c.ShippingAddressId
+		FROM dbo.Customers c
+		WHERE c.CustomerId = @CustomerId
+END
 
 
 /* seed data */
