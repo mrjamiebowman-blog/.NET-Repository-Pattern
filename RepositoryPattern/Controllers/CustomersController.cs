@@ -25,7 +25,6 @@ namespace RepositoryPattern.Controllers
             {
                 // load all customers
                 var data = await _dataService.GetCustomersAsync();
-
                 return View(data);
             }
             catch (Exception ex)

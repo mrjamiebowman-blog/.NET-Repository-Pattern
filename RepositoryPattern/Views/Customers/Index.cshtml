@@ -1,4 +1,5 @@
-﻿
+﻿@using KafkaModels.Models.Customer
+@model  IEnumerable<KafkaModels.Models.Customer.Customer>
 @{
     ViewData["Title"] = "Customers";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -6,3 +7,35 @@
 
 <h1>Customers</h1>
 
+<table class="table">
+    <thead>
+    <tr>
+        <th scope="col">Customer ID</th>
+        <th scope="col">First</th>
+        <th scope="col">Last</th>
+        <th scope="col">Email</th>
+        <th scope="col">Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(customer => item.CustomerId)
+                <td>
+                    @Html.DisplayFor(customer => item.FirstName)
+                </td>
+                <td>
+                    @Html.DisplayFor(customer => item.LastName)
+                </td>
+                <td>
+                    @Html.DisplayFor(customer => item.Email)
+                </td>
+                <td>
+                    [action]
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
