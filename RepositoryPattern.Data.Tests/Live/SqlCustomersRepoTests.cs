@@ -23,10 +23,23 @@ namespace RepositoryPattern.Data.Tests.Live
             // arrange
             var _customerRepo = new SqlCustomersRepository();
 
+            // fyi: you may need to update this id
             int id = 1;
 
             // act
             var customer = await _customerRepo.GetByIdAsync(id);
+        }
+
+        [Fact]
+        public async Task DeleteCustomerAsyncTests()
+        {
+            // arrange
+            var _customerRepo = new SqlCustomersRepository();
+            
+            // fyi
+            int id = 1002;
+
+            await _customerRepo.DeleteByIdAsync(id);
         }
     }
 }
