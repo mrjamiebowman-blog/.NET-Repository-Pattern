@@ -1,5 +1,7 @@
 ﻿using RepositoryPattern.Data.Repositories;
 using System.Threading.Tasks;
+using KafkaModels.Models.Customer;
+using Xunit;
 
 namespace RepositoryPattern.Data.Tests.Live
 {
@@ -33,6 +35,22 @@ namespace RepositoryPattern.Data.Tests.Live
             int id = 1002;
 
             await _customerRepo.DeleteByIdAsync(id);
+        }
+
+        [Fact]
+        public async Task SaveAsync()
+        {
+            // arrange
+            var _customerRepo = new SqlCustomersRepository();
+
+            var model = new Customer();
+            model.CustomerId = 1003;
+            model.FirstName = "Jamie";
+            model.LastName = "Bowman";
+            model.Email = "tes2t@test.com";
+
+            // act
+            model = await _customerRepo.SaveAsync(model);
         }
     }
 }

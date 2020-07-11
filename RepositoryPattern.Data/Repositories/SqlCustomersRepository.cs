@@ -115,6 +115,7 @@ namespace RepositoryPattern.Data.Repositories
 
                     var parameters = new DynamicParameters();
                     parameters.Add("@Upsert", upsert);
+                    parameters.Add("@CustomerId", model.CustomerId);
                     parameters.Add("@FirstName", model.FirstName);
                     parameters.Add("@LastName", model.LastName);
                     parameters.Add("@Email", model.Email);
