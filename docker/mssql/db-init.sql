@@ -497,7 +497,7 @@ END
 -- Description:	Save/update Customer
 -- =============================================
 CREATE PROCEDURE [dbo].[uspCustomerSave]
-	@CustomerId INT,
+	@CustomerId INT = NULL,
 	@FirstName VARCHAR(100),
 	@LastName VARCHAR(100),
 	@Email VARCHAR(255),
@@ -520,7 +520,7 @@ BEGIN
 	/* testing */
 
 	/* verify if customer exists */
-	IF @CustomerId IS NULL
+	IF @CustomerId IS NULL AND @Upsert = 1
 	BEGIN
 		INSERT INTO dbo.Customers
 		(
@@ -561,6 +561,7 @@ BEGIN
 		FROM dbo.Customers c
 		WHERE c.CustomerId = @CustomerId
 END
+
 
 
 /* seed data */
