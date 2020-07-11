@@ -17,7 +17,7 @@ namespace RepositoryPattern.Data.Tests.Live
 
         }
 
-        [Fact]
+        //[Fact]
         public async Task GetCustomersAsyncTests()
         {
             // arrange
@@ -30,7 +30,7 @@ namespace RepositoryPattern.Data.Tests.Live
             var customer = await _customerRepo.GetByIdAsync(id);
         }
 
-        [Fact]
+        //[Fact]
         public async Task DeleteCustomerAsyncTests()
         {
             // arrange
