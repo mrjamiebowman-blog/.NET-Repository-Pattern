@@ -8,7 +8,15 @@ namespace RepositoryPattern.Data.Repositories
     public class BaseMongoRepository : BaseRepository
     {
         protected MongoClient _mongo;
-        
+
+        protected string _dbName = "mrjb_repopattern_mongo";
+
+        public static class Databases 
+        {
+            public static string Customers = $"customers";
+
+        }
+
         public BaseMongoRepository()
         {
             try

@@ -64,6 +64,19 @@ namespace RepositoryPattern.Controllers
             }
         }
 
+        [HttpGet]
+        public async Task<IActionResult> Add()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Add(Customer model)
+        {
+            await _dataService.CreateCustomerAsync(model);
+            return RedirectToAction(nameof(Index));
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

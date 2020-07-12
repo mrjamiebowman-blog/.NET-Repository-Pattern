@@ -20,8 +20,9 @@ namespace RepositoryPattern.Data.Services
         public static void ConfigureServices(IServiceCollection services)
         {
             services.AddTransient<IDataService, DataService>();
-            services.AddTransient<ICustomersRepository, SqlCustomersRepository>();
-            //services.AddTransient<ICustomersRepository, MongoCustomersRepository>();
+            //services.AddTransient<ICustomersRepository, SqlCustomersRepository>();
+            services.AddTransient<ICustomersRepository, MongoCustomersRepository>();
+            //services.AddTransient<ICustomersRepository, PostgreSqlCustomersRepository>();
         }
 
         public DataService(ICustomersRepository customersRepository) : this()

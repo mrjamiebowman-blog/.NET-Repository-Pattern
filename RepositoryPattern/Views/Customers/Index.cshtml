@@ -7,6 +7,10 @@
 
 <h1>Customers</h1>
 
+<div class="p-2">
+    <a href="/Customers/Add" class="btn btn-primary float-right">Add</a>
+</div>
+
 <table class="table">
     <thead>
         <tr>
@@ -15,7 +19,7 @@
             <th scope="col">Last</th>
             <th scope="col">Email</th>
             <th scope="col">Birthdate</th>
-            <th scople="col">Age</th>
+            <th scope="col">Age</th>
             <th scope="col">Actions</th>
         </tr>
     </thead>
@@ -24,7 +28,7 @@
         {
             <tr>
                 <td>
-                    @item.CustomerId.ToString()
+                    @item.CustomerId?.ToString()
                 </td>
                 <td>
                     @Html.DisplayFor(customer => item.FirstName)
