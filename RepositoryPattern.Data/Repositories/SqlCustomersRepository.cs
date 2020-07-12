@@ -105,6 +105,11 @@ namespace RepositoryPattern.Data.Repositories
             }
         }
 
+        public Task InitDb()
+        {
+            throw new NotImplementedException();
+        }
+
         public async Task<Customer> SaveAsync(Customer model, bool upsert = true)
         {
             try

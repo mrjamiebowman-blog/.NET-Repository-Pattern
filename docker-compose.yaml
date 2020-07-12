@@ -17,3 +17,24 @@ services:
      - ./docker/data/mssql/:/var/opt/mssql/data
     networks:
       - netrepopattern
+  mongodb:
+    image: mongo
+    container_name: mrjb_repopattern_mongo
+    ports:
+       - 27017:27017
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: '555gpah4jzetczpf'
+    networks:
+      - netrepopattern      
+  mongo-express:
+    image: mongo-express
+    restart: always
+    ports:
+      - 8081:8081
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: root
+      ME_CONFIG_MONGODB_ADMINPASSWORD: '555gpah4jzetczpf'
+    networks:
+      - netrepopattern

@@ -1,23 +1,30 @@
 ﻿using RepositoryPattern.Data.Repositories;
 using System.Threading.Tasks;
 using KafkaModels.Models.Customer;
+using RepositoryPattern.Data.Repositories.Interfaces;
 using Xunit;
 
 namespace RepositoryPattern.Data.Tests.Live
 {
     public class SqlCustomersRepoTests
     {
+        protected ICustomersRepository _customerRepo;
+
         public SqlCustomersRepoTests()
         {
-
+            //_customerRepo = new SqlCustomersRepository();
+            _customerRepo = new MongoCustomersRepository();
         }
 
-        //[Fact]
+        [Fact]
+        public async Task InitDbTests()
+        {
+            await _customerRepo.InitDb();
+        }
+
+        [Fact]
         public async Task GetCustomersAsyncTests()
         {
-            // arrange
-            var _customerRepo = new SqlCustomersRepository();
-
             // fyi: you may need to update this id
             int id = 1;
 
@@ -28,9 +35,6 @@ namespace RepositoryPattern.Data.Tests.Live
         //[Fact]
         public async Task DeleteCustomerAsyncTests()
         {
-            // arrange
-            var _customerRepo = new SqlCustomersRepository();
-            
             // fyi
             int id = 1002;
 
@@ -40,9 +44,6 @@ namespace RepositoryPattern.Data.Tests.Live
         [Fact]
         public async Task SaveAsync()
         {
-            // arrange
-            var _customerRepo = new SqlCustomersRepository();
-
             var model = new Customer();
             model.CustomerId = 1003;
             model.FirstName = "Jamie";
