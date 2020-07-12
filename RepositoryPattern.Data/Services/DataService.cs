@@ -32,9 +32,9 @@ namespace RepositoryPattern.Data.Services
             throw new NotImplementedException();
         }
 
-        public Task<Customer> GetCustomerByIdAsync(int id)
+        public async Task<Customer> GetCustomerByIdAsync(int id)
         {
-            throw new NotImplementedException();
+            return await _customersRepository.GetByIdAsync(id);
         }
 
         public async Task<List<Customer>> GetCustomersAsync()
@@ -42,9 +42,9 @@ namespace RepositoryPattern.Data.Services
              return await _customersRepository.GetCustomersAsync();
         }
 
-        public Task SaveCustomerAsync(Customer model)
+        public async Task<Customer> SaveCustomerAsync(Customer model)
         {
-            throw new NotImplementedException();
+            return await _customersRepository.SaveAsync(model);
         }
 
         #endregion

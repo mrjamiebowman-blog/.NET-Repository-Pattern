@@ -10,6 +10,6 @@ namespace RepositoryPattern.Data.Services
         Task<Customer> GetCustomerByIdAsync(int id);
         Task DeleteCustomerByIdAsync(int id);
         Task<Customer> CreateCustomerAsync(Customer model);
-        Task SaveCustomerAsync(Customer model);
+        Task<Customer> SaveCustomerAsync(Customer model);
     }
 }

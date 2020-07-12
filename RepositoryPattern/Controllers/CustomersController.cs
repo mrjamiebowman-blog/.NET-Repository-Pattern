@@ -4,6 +4,7 @@ using Microsoft.Extensions.Logging;
 using RepositoryPattern.Models;
 using System.Diagnostics;
 using System.Threading.Tasks;
+using KafkaModels.Models.Customer;
 using RepositoryPattern.Data.Services;
 
 namespace RepositoryPattern.Controllers
@@ -23,13 +24,41 @@ namespace RepositoryPattern.Controllers
         {
             try
             {
-                // load all customers
                 var data = await _dataService.GetCustomersAsync();
                 return View(data);
             }
             catch (Exception ex)
             {
-                throw new Exception("Unable to load Customers. Please refresh the page.");
+                throw new Exception("Unable to load customers. Please refresh the page.");
+            }
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Edit(int id)
+        {
+            try
+            {
+                var data = await _dataService.GetCustomerByIdAsync(id);
+                return View(data);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Unable to load customer. Please refresh the page.");
+            }
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Edit(Customer model)
+        {
+            try
+            {
+                await _dataService.SaveCustomerAsync(model);
+                TempData["MessageSuccess"] = "Customer saved!";
+                return RedirectToAction(nameof(Edit), new { id = model.CustomerId });
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Unable to edit customer. Please refresh the page.");
             }
         }
 
