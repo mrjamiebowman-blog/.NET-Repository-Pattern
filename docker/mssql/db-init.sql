@@ -11,6 +11,7 @@ CREATE TABLE [dbo].[Customers](
 	[FirstName] [varchar](100) NOT NULL,
 	[LastName] [varchar](100) NOT NULL,
 	[Email] [varchar](255) NOT NULL,
+	[BirthDate] [datetime] NULL,
 	[BillingAddressId] [int] NULL,
 	[ShippingAddressId] [int] NULL,
  CONSTRAINT [PK_Customers] PRIMARY KEY CLUSTERED 
@@ -34,75 +35,7 @@ GO
 ALTER TABLE [dbo].[Customers] CHECK CONSTRAINT [FK_Customers_ShippingAddresses]
 GO
 
-/* create Addresses table */
-CREATE TABLE [dbo].[Addresses](
-	[AddressId] [int] IDENTITY(1,1) NOT NULL,
-	[Street1] [varchar](100) NOT NULL,
-	[Street2] [varchar](100) NULL,
-	[City] [varchar](100) NOT NULL,
-	[State] [varchar](100) NOT NULL,
-	[PostalCode] [varchar](11) NOT NULL,
-	[Country] [varchar](100) NOT NULL,
-	[FirstName] [varchar](100) NOT NULL,
-	[LastName] [varchar](100) NOT NULL,
-	[Phone] [varchar](15) NOT NULL,
-	[OnCreated] [datetime2](7) NOT NULL,
-	[ModifedOn] [datetime2](7) NOT NULL,
- CONSTRAINT [PK_Addresses] PRIMARY KEY CLUSTERED 
-(
-	[AddressId] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
-) ON [PRIMARY]
-GO
 
-/* create Stored Procedures */
-GO
--- =============================================
--- Author:		Jamie Bowman
--- Create date: 07/07/2020
--- Description:	Create Customer
--- =============================================
-CREATE PROCEDURE [dbo].[uspCustomerCreate]
-	 @FirstName VARCHAR(100)
-	,@LastName VARCHAR(100)
-	,@Email VARCHAR(255)
-	,@BillingAddressId INT = NULL
-	,@ShippingAddressId INT = NULL
-AS
-BEGIN
-	-- SET NOCOUNT ON added to prevent extra result sets from
-	-- interfering with SELECT statements.
-	SET NOCOUNT ON;
-	
-	INSERT INTO dbo.Customers
-	(
-		 FirstName
-		,LastName
-		,Email
-		,BillingAddressId
-		,ShippingAddressId
-	)
-	VALUES
-	(
-		 @FirstName
-		,@LastName
-		,@Email
-		,@BillingAddressId
-		,@ShippingAddressId
-	)
-
-	SELECT
-		CustomerId
-		,FirstName
-		,LastName
-		,Email
-		,BillingAddressId
-		,ShippingAddressId
-	FROM dbo.Customers c
-	WHERE c.CustomerId = (SELECT SCOPE_IDENTITY())
-END
-
-GO
 -- =============================================
 -- Author:		Jamie Bowman
 -- Create date: 07/07/2020
@@ -248,6 +181,51 @@ END
 GO
 
 
+CREATE PROCEDURE [dbo].[uspCustomerCreate]
+	 @FirstName VARCHAR(100)
+	,@LastName VARCHAR(100)
+	,@Email VARCHAR(255)
+	,@BirthDate DATETIME
+	,@BillingAddressId INT = NULL
+	,@ShippingAddressId INT = NULL
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+	
+	INSERT INTO dbo.Customers
+	(
+		 FirstName
+		,LastName
+		,Email
+		,BirthDate
+		,BillingAddressId
+		,ShippingAddressId
+	)
+	VALUES
+	(
+		 @FirstName
+		,@LastName
+		,@Email
+		,@BirthDate
+		,@BillingAddressId
+		,@ShippingAddressId
+	)
+
+	SELECT
+		CustomerId
+		,FirstName
+		,LastName
+		,Email
+		,BirthDate
+		,BillingAddressId
+		,ShippingAddressId
+	FROM dbo.Customers c
+	WHERE c.CustomerId = (SELECT SCOPE_IDENTITY())
+END
+
+
 -- =============================================
 -- Author:		Jamie Bowman
 -- Create date: 07/09/2020
@@ -278,6 +256,10 @@ BEGIN
 	-- interfering with SELECT statements.
 	SET NOCOUNT ON;
 
+	/* testing */
+	--DECLARE @CustomerId INT = 1
+	/* testing */
+
     -- Insert statements for procedure here
 
 	SELECT
@@ -285,6 +267,7 @@ BEGIN
 		,c.FirstName
 		,c.LastName
 		,c.Email
+		,c.BirthDate
 		,ba.AddressId
 		,ba.FirstName
 		,ba.LastName
@@ -292,7 +275,7 @@ BEGIN
 		,ba.Street1
 		,ba.Street2
 		,ba.City
-		,ba.State
+		,ba.[State]
 		,ba.Country
 		,sa.AddressId
 		,sa.FirstName
@@ -300,7 +283,7 @@ BEGIN
 		,sa.Street1
 		,sa.Street2
 		,sa.City
-		,sa.State
+		,sa.[State]
 		,sa.Country
 		FROM dbo.Customers c
 			LEFT JOIN dbo.Addresses ba ON ba.AddressId = c.BillingAddressId
@@ -309,6 +292,7 @@ BEGIN
 			c.CustomerId = @CustomerId
 
 END
+
 
 
 
@@ -423,6 +407,7 @@ END
 	,c.FirstName
 	,c.LastName
 	,c.Email
+	,c.BirthDate
 	,c.BillingAddressId
 	,c.ShippingAddressId
 	FROM dbo.Customers c
@@ -441,6 +426,7 @@ WHERE
 		,d.FirstName
 		,d.LastName
 		,d.Email
+		,d.BirthDate
 		,ba.AddressId
 		,ba.FirstName
 		,ba.LastName
@@ -448,7 +434,7 @@ WHERE
 		,ba.Street1
 		,ba.Street2
 		,ba.City
-		,ba.State
+		,ba.[State]
 		,ba.Country
 		,sa.AddressId
 		,sa.FirstName
@@ -456,7 +442,7 @@ WHERE
 		,sa.Street1
 		,sa.Street2
 		,sa.City
-		,sa.State
+		,sa.[State]
 		,sa.Country
     FROM #FilteredData d
 		LEFT JOIN dbo.Addresses ba ON ba.AddressId = d.BillingAddressId
@@ -491,6 +477,7 @@ WHERE
 END
 
 
+
 -- =============================================
 -- Author:		Jamie Bowman
 -- Create date: 07/11/2020
@@ -501,6 +488,7 @@ CREATE PROCEDURE [dbo].[uspCustomerSave]
 	@FirstName VARCHAR(100),
 	@LastName VARCHAR(100),
 	@Email VARCHAR(255),
+	@BirthDate DATETIME = null,
 	@BillingAddressId INT = null,
 	@ShippingAddressId INT = null,
 	@Upsert BIT = 1
@@ -527,6 +515,7 @@ BEGIN
 			 FirstName
 			,LastName
 			,Email
+			,BirthDate
 			,BillingAddressId
 			,ShippingAddressId
 		)
@@ -535,6 +524,7 @@ BEGIN
 			 @FirstName
 			,@LastName
 			,@Email
+			,@BirthDate
 			,@BillingAddressId
 			,@ShippingAddressId
 		)
@@ -546,6 +536,7 @@ BEGIN
 			 FirstName = @FirstName
 			,LastName = @LastName
 			,Email = @Email
+			,Birthdate = @BirthDate
 			,BillingAddressId = @BillingAddressId
 			,ShippingAddressId = @ShippingAddressId
 		WHERE CustomerId = @CustomerId
@@ -556,6 +547,7 @@ BEGIN
 		,c.FirstName
 		,c.LastName
 		,c.Email
+		,c.BirthDate
 		,c.BillingAddressId
 		,c.ShippingAddressId
 		FROM dbo.Customers c
@@ -596,5 +588,6 @@ EXEC [dbo].[uspCustomerCreate]
 	 @FirstName = 'Joan'
 	,@LastName = 'Cooney'
 	,@Email = 'loxoyaj737@aqumail.com'
-	,@BilliningAddressId = @AddressId1
+	,@BirthDate = '08/07/1983'
+	,@BillingAddressId = @AddressId1
 	,@ShippingAddressId = @AddressId2
