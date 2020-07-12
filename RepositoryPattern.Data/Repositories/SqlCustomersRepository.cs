@@ -38,7 +38,7 @@ namespace RepositoryPattern.Data.Repositories
             }
         }
 
-        public async Task DeleteByIdAsync(int id)
+        public async Task DeleteByIdAsync(dynamic id)
         {
             try
             {
@@ -58,7 +58,7 @@ namespace RepositoryPattern.Data.Repositories
             }
         }
 
-        public async Task<Customer> GetByIdAsync(int id)
+        public async Task<Customer> GetByIdAsync(dynamic id)
         {
             try
             {
@@ -128,6 +128,7 @@ namespace RepositoryPattern.Data.Repositories
                         parameters.Add("@BillingAddressId", model.BillingAddress.AddressId);
                     if (model.ShippingAddress != null && model.ShippingAddress.AddressId.HasValue)
                         parameters.Add("@ShippingAddressId", model.ShippingAddress.AddressId);
+                    parameters.Add("@BirthDate", model.Birthdate);
 
                     var data = (await conn.QueryAsync<Customer>(StoredProcedures.SaveCustomer, parameters, commandType: CommandType.StoredProcedure)).SingleOrDefault();
                     return data;

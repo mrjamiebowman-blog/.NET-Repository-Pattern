@@ -7,9 +7,9 @@ namespace RepositoryPattern.Data.Services
     public interface IDataService
     {
         Task<List<Customer>> GetCustomersAsync();
-        Task<Customer> GetCustomerByIdAsync(int id);
-        Task DeleteCustomerByIdAsync(int id);
+        Task<Customer> GetCustomerByIdAsync(dynamic id);
+        Task DeleteCustomerByIdAsync(dynamic id);
         Task<Customer> CreateCustomerAsync(Customer model);
-        Task<Customer> SaveCustomerAsync(Customer model);
+        Task<Customer> SaveCustomerAsync(Customer model, bool upsert = true);
     }
 }

@@ -9,20 +9,23 @@
 
 <table class="table">
     <thead>
-    <tr>
-        <th scope="col">Customer ID</th>
-        <th scope="col">First</th>
-        <th scope="col">Last</th>
-        <th scope="col">Email</th>
-        <th scope="col">Actions</th>
-    </tr>
+        <tr>
+            <th scope="col">Customer ID</th>
+            <th scope="col">First</th>
+            <th scope="col">Last</th>
+            <th scope="col">Email</th>
+            <th scope="col">Birthdate</th>
+            <th scople="col">Age</th>
+            <th scope="col">Actions</th>
+        </tr>
     </thead>
     <tbody>
         @foreach (var item in Model)
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(customer => item.CustomerId)
+                    @item.CustomerId.ToString()
+                </td>
                 <td>
                     @Html.DisplayFor(customer => item.FirstName)
                 </td>
@@ -31,6 +34,12 @@
                 </td>
                 <td>
                     @Html.DisplayFor(customer => item.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(customer => item.Birthdate)
+                </td>
+                <td>
+                    @item.Age.ToString()
                 </td>
                 <td>
                     <a href="/Customers/Edit/@item.CustomerId" type="button" class="btn btn-primary">Edit</a>

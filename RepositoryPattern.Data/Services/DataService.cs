@@ -1,4 +1,6 @@
 ﻿using KafkaModels.Models.Customer;
+using Microsoft.Extensions.DependencyInjection;
+using RepositoryPattern.Data.Repositories;
 using RepositoryPattern.Data.Repositories.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -15,6 +17,13 @@ namespace RepositoryPattern.Data.Services
 
         }
 
+        public static void ConfigureServices(IServiceCollection services)
+        {
+            services.AddTransient<IDataService, DataService>();
+            services.AddTransient<ICustomersRepository, SqlCustomersRepository>();
+            //services.AddTransient<ICustomersRepository, MongoCustomersRepository>();
+        }
+
         public DataService(ICustomersRepository customersRepository) : this()
         {
             _customersRepository = customersRepository;
@@ -22,29 +31,44 @@ namespace RepositoryPattern.Data.Services
 
         #region Customers
 
-        public Task<Customer> CreateCustomerAsync(Customer model)
+        public async Task<Customer> CreateCustomerAsync(Customer model)
         {
-            throw new NotImplementedException();
+            return await _customersRepository.CreateAsync(model);
         }
 
-        public Task DeleteCustomerByIdAsync(int id)
+        public async Task DeleteCustomerByIdAsync(dynamic id)
         {
-            throw new NotImplementedException();
+            await _customersRepository.DeleteByIdAsync(id);
         }
 
-        public async Task<Customer> GetCustomerByIdAsync(int id)
+        public async Task<Customer> GetCustomerByIdAsync(dynamic id)
         {
-            return await _customersRepository.GetByIdAsync(id);
+            var customer = await _customersRepository.GetByIdAsync(id);
+            customer.Age = await GetCustomerAgeAsync(customer.Birthdate);
+            return customer;
         }
 
         public async Task<List<Customer>> GetCustomersAsync()
         {
-             return await _customersRepository.GetCustomersAsync();
+             var customers = await _customersRepository.GetCustomersAsync();
+
+            // this is a terrible idea but it's for demonstrable purposes
+            customers.ForEach(async x => x.Age = await GetCustomerAgeAsync(x.Birthdate));
+
+            return customers;
         }
 
-        public async Task<Customer> SaveCustomerAsync(Customer model)
+        public async Task<Customer> SaveCustomerAsync(Customer model, bool upsert = true)
         {
-            return await _customersRepository.SaveAsync(model);
+            return await _customersRepository.SaveAsync(model, upsert);
+        }
+
+        private Task<int> GetCustomerAgeAsync(DateTime birthdate)
+        {
+            int age = DateTime.Now.Year - birthdate.Year;
+            if (DateTime.Now.DayOfYear < birthdate.DayOfYear)
+                age = age - 1;
+            return Task.FromResult(age);
         }
 
         #endregion

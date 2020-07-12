@@ -26,7 +26,7 @@ namespace RepositoryPattern.Data.Tests.Live
         public async Task GetCustomersAsyncTests()
         {
             // fyi: you may need to update this id
-            int id = 1;
+            string id = "5f0a888694e331568c891831";
 
             // act
             var customer = await _customerRepo.GetByIdAsync(id);

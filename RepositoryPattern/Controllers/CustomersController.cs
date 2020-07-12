@@ -34,7 +34,7 @@ namespace RepositoryPattern.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Edit(int id)
+        public async Task<IActionResult> Edit(string id)
         {
             try
             {
@@ -48,13 +48,15 @@ namespace RepositoryPattern.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Edit(Customer model)
+        public async Task<IActionResult> Edit(string id, Customer model)
         {
             try
             {
-                await _dataService.SaveCustomerAsync(model);
+                // hack: doesn't map id to dynamic property.
+                model.CustomerId = id;
+                await _dataService.SaveCustomerAsync(model, false);
                 TempData["MessageSuccess"] = "Customer saved!";
-                return RedirectToAction(nameof(Edit), new { id = model.CustomerId });
+                return RedirectToAction(nameof(Edit), new { id = id });
             }
             catch (Exception ex)
             {

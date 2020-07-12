@@ -13,12 +13,12 @@ namespace RepositoryPattern.Data.Tests.Repositories
             throw new NotImplementedException();
         }
 
-        public Task DeleteByIdAsync(int id)
+        public Task DeleteByIdAsync(dynamic id)
         {
             throw new NotImplementedException();
         }
 
-        public Task<Customer> GetByIdAsync(int id)
+        public Task<Customer> GetByIdAsync(dynamic id)
         {
             throw new NotImplementedException();
         }
