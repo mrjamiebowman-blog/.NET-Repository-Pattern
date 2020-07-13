@@ -53,7 +53,7 @@ namespace RepositoryPattern.Controllers
             try
             {
                 // hack: doesn't map id to dynamic property.
-                model.CustomerId = id;
+                model.Id = id;
                 await _dataService.SaveCustomerAsync(model, false);
                 TempData["MessageSuccess"] = "Customer saved!";
                 return RedirectToAction(nameof(Edit), new { id = id });

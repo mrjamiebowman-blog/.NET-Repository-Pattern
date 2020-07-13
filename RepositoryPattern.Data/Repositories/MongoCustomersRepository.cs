@@ -77,7 +77,7 @@ namespace RepositoryPattern.Data.Repositories
                 var db = _mongo.GetDatabase(_dbName);
                 IMongoCollection<BsonDocument> collCustomers = db.GetCollection<BsonDocument>(Databases.Customers);
                 var filter = Builders<BsonDocument>.Filter.Eq("CustomerIdMg", id);
-                var customer = await collCustomers.FindSync<Customer>(filter);
+                var customer = await collCustomers.FindSync<Customer>(filter).FirstOrDefaultAsync();
                 return customer;
             } catch (Exception ex) {
                 throw ex;

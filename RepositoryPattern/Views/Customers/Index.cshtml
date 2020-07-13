@@ -1,4 +1,5 @@
 ﻿@using KafkaModels.Models.Customer
+@using RepositoryPattern.Data.Extensions
 @model  IEnumerable<KafkaModels.Models.Customer.Customer>
 @{
     ViewData["Title"] = "Customers";
@@ -28,7 +29,7 @@
         {
             <tr>
                 <td>
-                    @item.CustomerId?.ToString()
+                    @item.GetCustomerId()
                 </td>
                 <td>
                     @Html.DisplayFor(customer => item.FirstName)
@@ -46,7 +47,7 @@
                     @item.Age.ToString()
                 </td>
                 <td>
-                    <a href="/Customers/Edit/@item.CustomerId" type="button" class="btn btn-primary">Edit</a>
+                    <a href="/Customers/Edit/@item.GetCustomerId()" type="button" class="btn btn-primary">Edit</a>
                 </td>
             </tr>
         }

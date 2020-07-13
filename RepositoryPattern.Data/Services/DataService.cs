@@ -5,29 +5,51 @@ using RepositoryPattern.Data.Repositories.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using RepositoryPattern.Data.Types;
 
 namespace RepositoryPattern.Data.Services
 {
     public class DataService : IDataService
     {
         private readonly ICustomersRepository _customersRepository;
+        public readonly DataProviderType ProviderType;
 
         public DataService()
         {
 
         }
 
-        public static void ConfigureServices(IServiceCollection services)
-        {
-            services.AddTransient<IDataService, DataService>();
-            //services.AddTransient<ICustomersRepository, SqlCustomersRepository>();
-            services.AddTransient<ICustomersRepository, MongoCustomersRepository>();
-            //services.AddTransient<ICustomersRepository, PostgreSqlCustomersRepository>();
-        }
-
         public DataService(ICustomersRepository customersRepository) : this()
         {
             _customersRepository = customersRepository;
+
+            ProviderType = GetProviderType();
+        }
+
+        public static void ConfigureServices(IServiceCollection services)
+        {
+            services.AddTransient<IDataService, DataService>();
+
+            var providerType = GetProviderType();
+            
+            if (providerType == DataProviderType.MSSQL) {
+                // mssql
+                services.AddTransient<ICustomersRepository, SqlCustomersRepository>();
+            } else if (providerType == DataProviderType.MongoDB) {
+                // mongodb
+                services.AddTransient<ICustomersRepository, MongoCustomersRepository>();
+            } else if (providerType == DataProviderType.Postgres) {
+                // postgres
+                services.AddTransient<ICustomersRepository, PostgreSqlCustomersRepository>();
+            } else {
+                // default
+                services.AddTransient<ICustomersRepository, SqlCustomersRepository>();
+            }
+        }
+
+        public static DataProviderType GetProviderType()
+        {
+            return DataProviderType.MongoDB;
         }
 
         #region Customers
