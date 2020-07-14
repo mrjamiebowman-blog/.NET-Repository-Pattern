@@ -54,15 +54,14 @@ namespace RepositoryPattern.Data.Repositories
             }
         }
 
-        public Task DeleteByIdAsync(dynamic id)
+        public async Task DeleteByIdAsync(dynamic id)
         {
             try
             {
                 var db = _mongo.GetDatabase(_dbName);
                 IMongoCollection<BsonDocument> collCustomers = db.GetCollection<BsonDocument>(Databases.Customers);
-                var deleteFilter = Builders<BsonDocument>.Filter.Eq("CustomerIdMg", id);
-                collCustomers.DeleteOne(deleteFilter);
-                return null;
+                var deleteFilter = Builders<BsonDocument>.Filter.Eq("_id", ObjectId.Parse((string)id));
+                await collCustomers.DeleteOneAsync(deleteFilter);
             }
             catch (Exception ex)
             {
@@ -75,10 +74,13 @@ namespace RepositoryPattern.Data.Repositories
             try
             {
                 var db = _mongo.GetDatabase(_dbName);
-                IMongoCollection<BsonDocument> collCustomers = db.GetCollection<BsonDocument>(Databases.Customers);
-                var filter = Builders<BsonDocument>.Filter.Eq("CustomerIdMg", id);
-                var customer = await collCustomers.FindSync<Customer>(filter).FirstOrDefaultAsync();
-                return customer;
+                var collection = db.GetCollection<BsonDocument>(Databases.Customers);
+                var filter = Builders<BsonDocument>.Filter.Eq("_id", ObjectId.Parse((string)id));
+                var filterResult = collection.Find(filter).FirstOrDefault();
+                if (filterResult == null)
+                    return null;
+                var customer = BsonSerializer.Deserialize<Customer>(filterResult);
+                return await Task.FromResult(customer);
             } catch (Exception ex) {
                 throw ex;
             }
@@ -106,8 +108,8 @@ namespace RepositoryPattern.Data.Repositories
             {
                 var db = _mongo.GetDatabase(_dbName);
                 IMongoCollection<BsonDocument> collCustomers = db.GetCollection<BsonDocument>(Databases.Customers);
-                var filter = Builders<BsonDocument>.Filter.Eq("CustomerIdMg", model.CustomerId);
-                collCustomers.UpdateOne(filter, model.ToBsonDocument());
+                var filter = Builders<BsonDocument>.Filter.Eq("_id", model.CustomerIdMg);
+                collCustomers.ReplaceOne(filter, model.ToBsonDocument());
                 return Task.FromResult(model);
             }
             catch (Exception ex)

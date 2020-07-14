@@ -5,6 +5,7 @@ using RepositoryPattern.Data.Repositories.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Configuration;
 using RepositoryPattern.Data.Types;
 
 namespace RepositoryPattern.Data.Services
@@ -12,15 +13,18 @@ namespace RepositoryPattern.Data.Services
     public class DataService : IDataService
     {
         private readonly ICustomersRepository _customersRepository;
+        public IConfiguration Configuration { get; }
         public readonly DataProviderType ProviderType;
+        
 
         public DataService()
         {
 
         }
 
-        public DataService(ICustomersRepository customersRepository) : this()
+        public DataService(/*IConfiguration configuration, */ICustomersRepository customersRepository) : this()
         {
+            //Configuration = configuration;
             _customersRepository = customersRepository;
 
             ProviderType = GetProviderType();
@@ -49,6 +53,7 @@ namespace RepositoryPattern.Data.Services
 
         public static DataProviderType GetProviderType()
         {
+            // hack: should read from config
             return DataProviderType.MongoDB;
         }
 
@@ -67,7 +72,8 @@ namespace RepositoryPattern.Data.Services
         public async Task<Customer> GetCustomerByIdAsync(dynamic id)
         {
             var customer = await _customersRepository.GetByIdAsync(id);
-            customer.Age = await GetCustomerAgeAsync(customer.Birthdate);
+            if (customer?.Birthdate != null)
+                customer.Age = await GetCustomerAgeAsync(customer.Birthdate);
             return customer;
         }
 
@@ -86,11 +92,15 @@ namespace RepositoryPattern.Data.Services
             return await _customersRepository.SaveAsync(model, upsert);
         }
 
-        private Task<int> GetCustomerAgeAsync(DateTime birthdate)
+        private Task<int?> GetCustomerAgeAsync(DateTime? birthdate)
         {
-            int age = DateTime.Now.Year - birthdate.Year;
-            if (DateTime.Now.DayOfYear < birthdate.DayOfYear)
+            if (birthdate == null)
+                return null;
+
+            int? age = DateTime.Now.Year - birthdate.Value.Year;
+            if (DateTime.Now.DayOfYear < birthdate.Value.DayOfYear)
                 age = age - 1;
+
             return Task.FromResult(age);
         }
 

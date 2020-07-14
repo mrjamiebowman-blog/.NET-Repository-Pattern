@@ -8,6 +8,9 @@ namespace RepositoryPattern.Data.Extensions
     {
         public static string GetCustomerId(this Customer model)
         {
+            if (model == null)
+                return string.Empty;
+
             var providerType = DataService.GetProviderType();
 
             if (providerType == DataProviderType.MSSQL) {

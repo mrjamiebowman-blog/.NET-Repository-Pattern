@@ -22,6 +22,7 @@ namespace RepositoryPattern
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+
             DataService.ConfigureServices(services);
         }
 

@@ -5,6 +5,7 @@ using RepositoryPattern.Models;
 using System.Diagnostics;
 using System.Threading.Tasks;
 using KafkaModels.Models.Customer;
+using MongoDB.Bson;
 using RepositoryPattern.Data.Services;
 
 namespace RepositoryPattern.Controllers
@@ -54,6 +55,7 @@ namespace RepositoryPattern.Controllers
             {
                 // hack: doesn't map id to dynamic property.
                 model.Id = id;
+                model.CustomerIdMg = ObjectId.Parse(id);
                 await _dataService.SaveCustomerAsync(model, false);
                 TempData["MessageSuccess"] = "Customer saved!";
                 return RedirectToAction(nameof(Edit), new { id = id });
@@ -74,6 +76,20 @@ namespace RepositoryPattern.Controllers
         public async Task<IActionResult> Add(Customer model)
         {
             await _dataService.CreateCustomerAsync(model);
+            return RedirectToAction(nameof(Index));
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Delete(string id)
+        {
+            var data = await _dataService.GetCustomerByIdAsync(id);
+            return View(data);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> DeleteAction(string id)
+        {
+            await _dataService.DeleteCustomerByIdAsync(id);
             return RedirectToAction(nameof(Index));
         }
 
