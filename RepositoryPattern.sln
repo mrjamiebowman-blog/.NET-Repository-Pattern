@@ -30,6 +30,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "mssql", "mssql", "{E00D0C68
 		docker\mssql\entrypoint.sh = docker\mssql\entrypoint.sh
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "postgres", "postgres", "{A3F70A57-5CFF-4FB0-B085-CED1EA09F965}"
+	ProjectSection(SolutionItems) = preProject
+		docker\postgres\db-init.sh = docker\postgres\db-init.sh
+		docker\postgres\db-init.sql = docker\postgres\db-init.sql
+		docker\postgres\Dockerfile = docker\postgres\Dockerfile
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -58,6 +65,7 @@ Global
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{E00D0C68-6F40-4887-8971-2FCFC02C078B} = {C6B30454-A540-46D1-B1A7-15EEFE027DF9}
+		{A3F70A57-5CFF-4FB0-B085-CED1EA09F965} = {C6B30454-A540-46D1-B1A7-15EEFE027DF9}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {8D196391-0C94-4093-B2EE-BC805AAADA90}

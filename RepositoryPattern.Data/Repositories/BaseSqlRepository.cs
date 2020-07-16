@@ -9,7 +9,6 @@ namespace RepositoryPattern.Data.Repositories
         private IConfigurationSection _databaseSettings;
         private IConfigurationSection _settings;
 
-        protected bool? _debug { get; set; }
         private static string dbSchema = "dbo";
 
         public BaseSqlRepository()
