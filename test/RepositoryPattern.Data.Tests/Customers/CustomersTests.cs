@@ -1,9 +1,8 @@
+using Microsoft.Extensions.Configuration;
 using RepositoryPattern.Data.Services;
 using RepositoryPattern.Data.Tests.Repositories;
 using System.Threading.Tasks;
-using Microsoft.Extensions.Configuration;
 using Xunit;
-using Moq;
 
 namespace RepositoryPattern.Data.Tests
 {
