@@ -1,0 +1,59 @@
+﻿@using RepositoryPattern.Data.Extensions
+@model KafkaModels.Models.Customer.Customer
+@{
+    ViewData["Title"] = "Edit";
+
+    var messageSuccess = Convert.ToString(TempData["MessageSuccess"]);
+    var messageError = Convert.ToString(TempData["MessageError"]);
+}
+
+<h4>Customer</h4>
+<hr />
+
+@if (!String.IsNullOrWhiteSpace(messageError))
+{
+    <div class="alert alert-danger">@messageError</div>
+}
+
+@if (!String.IsNullOrWhiteSpace(messageSuccess))
+{
+    <div class="alert alert-success">@messageSuccess</div>
+}
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            @Html.Hidden("id", Model.GetCustomerId())
+
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="FirstName" class="control-label"></label>
+                <input asp-for="FirstName" class="form-control"/>
+                <span asp-validation-for="FirstName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LastName" class="control-label"></label>
+                <input asp-for="LastName" class="form-control"/>
+                <span asp-validation-for="LastName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Email" class="control-label"></label>
+                <input asp-for="Email" class="form-control"/>
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Birthdate" class="control-label"></label>
+                <input asp-for="Birthdate" class="form-control"/>
+                <span asp-validation-for="Birthdate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary"/>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
