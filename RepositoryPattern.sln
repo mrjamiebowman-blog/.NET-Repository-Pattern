@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.29905.134
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.32014.148
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RepositoryPattern", "RepositoryPattern\RepositoryPattern.csproj", "{14A5E2AE-0FC1-4CB0-A922-78A5BE8A58A5}"
 EndProject
@@ -37,6 +37,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "postgres", "postgres", "{A3
 		docker\postgres\Dockerfile = docker\postgres\Dockerfile
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{4B17BF57-39D8-4131-9E08-501198B25551}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{F31BF859-18D2-4EFD-B989-5117373CCEC9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -64,6 +68,10 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
+		{14A5E2AE-0FC1-4CB0-A922-78A5BE8A58A5} = {4B17BF57-39D8-4131-9E08-501198B25551}
+		{C0C7BB30-FAC2-428A-86C9-DB7FDD175F48} = {4B17BF57-39D8-4131-9E08-501198B25551}
+		{8D4CDA34-F4A8-4FAA-99E8-8D0993453DD6} = {4B17BF57-39D8-4131-9E08-501198B25551}
+		{392DA74B-6518-4FBB-A8B8-CE623FB9EF8A} = {F31BF859-18D2-4EFD-B989-5117373CCEC9}
 		{E00D0C68-6F40-4887-8971-2FCFC02C078B} = {C6B30454-A540-46D1-B1A7-15EEFE027DF9}
 		{A3F70A57-5CFF-4FB0-B085-CED1EA09F965} = {C6B30454-A540-46D1-B1A7-15EEFE027DF9}
 	EndGlobalSection
