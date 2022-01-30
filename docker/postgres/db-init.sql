@@ -59,3 +59,115 @@ CREATE TABLE public."Customers"
 
 ALTER TABLE public."Customers"
     OWNER to dbuser;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+CREATE OR REPLACE PROCEDURE public.uspgetcustomers(firstname character, lastname character, email character, city character, state character, country character, pageno bigint DEFAULT 1, pagesize integer DEFAULT 25, sortcolumn character DEFAULT 'CustomerId'::bpchar, sortorder character DEFAULT 'ASC'::bpchar)
+ LANGUAGE plpgsql
+AS $procedure$
+	BEGIN	
+		/* both */
+		FirstName := COALESCE(NULLIF(FirstName,''), NULL);
+		LastName := COALESCE(NULLIF(LastName,''), NULL);
+		Email := COALESCE(NULLIF(Email,''), NULL);
+		City := COALESCE(NULLIF(City,''), NULL);
+		State := COALESCE(NULLIF(State,''), NULL);
+		Country := COALESCE(NULLIF(Country,''), NULL);
+		
+		/* page no. & page size */
+		PageNo := COALESCE(NULLIF(PageNo,''), 1);
+		PageSize := COALESCE(NULLIF(PageSize, ''), 25);
+		
+		/* sorting and ordering */
+		SortColumn := COALESCE(NULLIF(SortColumn,''), 'LastName');
+		SortOrder := COALESCE(NULLIF(SortOrder, ''), 'ASC');
+	
+		/* cte */			
+		WITH cte_data as
+		(
+			select 
+				c.FirstName
+				from Customers
+		)
+		select c.FirstName from Customers;
+	
+		/* create temp table */
+		create temp table tmpfiltereddata as select * from cte_data;
+
+
+		select * from tmpfiltereddata;
+	
+	
+--	    SELECT
+--			 RowNumber
+--			,CustomerId
+--			,FirstName
+--			,LastName
+--			,Email
+--			,BirthDate
+--			,AddressId
+--			,FirstName
+--			,LastName
+--			,Phone
+--			,Street1
+--			,Street2
+--			,City
+--			,State
+--			,Country
+--			,AddressId
+--			,FirstName
+--			,LastName
+--			,Street1
+--			,Street2
+--			,City
+--			,State
+--			,Country
+--	    FROM tmpfiltereddata d
+--			LEFT JOIN Addresses ba ON ba.AddressId = d.BillingAddressId
+--			LEFT JOIN Addresses sa ON sa.AddressId = d.ShippingAddressId
+--		WHERE
+--			RowNumber > @lFirstRec
+--			AND RowNumber < @lLastRec
+--				ORDER BY RowNumber ASC
+----	
+--		
+--	    /* return dataset of info */
+--	    DECLARE @PageCount INT, @TotalRowCount INT, @DIFF INT
+--	
+--	    SET @TotalRowCount = (SELECT COUNT(*) FROM #FilteredData)
+--	    SET @PageCount = (@TotalRowCount / @PageSize)
+--	
+--	    SET @DIFF = (@TotalRowCount - (@PageCount * @PageSize))
+--	    IF (@DIFF > 0)
+--	  BEGIN
+--	  SET @PageCount = @PageCount + 1
+--	    END
+--	
+--		SELECT
+--			COUNT(*) AS ItemCount
+--			,@PageNo as PageNo
+--			,@PageSize as PageSize
+--			,@SortColumn as SortColumn
+--			,@SortOrder as SortOrder
+--			,@PageCount as PageCount
+--		FROM #FilteredData	
+--	
+		
+--		DROP TABLE tmpFilteredData;
+
+				commit;
+	
+	END;
+$procedure$
+;

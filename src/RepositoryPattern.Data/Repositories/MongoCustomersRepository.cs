@@ -22,6 +22,7 @@ namespace RepositoryPattern.Data.Repositories
             try
             {
                 var db = _mongo.GetDatabase(_dbName);
+
                 IMongoCollection<BsonDocument> collCustomers = db.GetCollection<BsonDocument>(Databases.Customers);
 
                 // customer

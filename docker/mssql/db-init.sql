@@ -304,7 +304,7 @@ END
 CREATE PROCEDURE [dbo].[uspCustomersGet]
 	@FirstName VARCHAR(100),
 	@LastName VARCHAR(100),
-	@Email VARCHAR(100),
+	@Email VARCHAR(255),
 	@City VARCHAR(100),
 	@State VARCHAR(100),
 	@Country VARCHAR(100),
