@@ -1,5 +1,6 @@
 ﻿using Dapper;
 using KafkaModels.Models.Customer;
+using RepositoryPattern.Data.Repositories.Bases;
 using RepositoryPattern.Data.Repositories.Interfaces;
 using System;
 using System.Collections.Generic;

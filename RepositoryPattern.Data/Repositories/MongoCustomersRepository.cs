@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using MongoDB.Bson.Serialization;
+using RepositoryPattern.Data.Repositories.Bases;
 
 namespace RepositoryPattern.Data.Repositories
 {
