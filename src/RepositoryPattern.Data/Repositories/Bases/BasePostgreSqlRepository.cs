@@ -9,7 +9,7 @@ public class BasePostgreSqlRepository : BaseRepository
     private IConfigurationSection _databaseSettings;
     private IConfigurationSection _settings;
 
-    //private static string dbSchema = "dbo";
+    private static string dbSchema = "public";
 
     public BasePostgreSqlRepository()
     {
@@ -22,12 +22,12 @@ public class BasePostgreSqlRepository : BaseRepository
         return conn;
     }
 
-    //public static class StoredProcedures
-    //{
-    //    public static string CreateCustomer = $"{dbSchema}.uspCustomerCreate";
-    //    public static string GetCustomer = $"{dbSchema}.uspCustomerGet";
-    //    public static string DeleteCustomer = $"{dbSchema}.uspCustomerDelete";
-    //    public static string SaveCustomer = $"{dbSchema}.uspCustomerSave";
-    //    public static string GetCustomers = $"{dbSchema}.uspCustomersGet";
-    //}
+    public static class StoredProcedures
+    {
+        public static string CreateCustomer = $"{dbSchema}.uspCustomerCreate";
+        public static string GetCustomer = $"{dbSchema}.uspCustomerGet";
+        public static string DeleteCustomer = $"{dbSchema}.uspCustomerDelete";
+        public static string SaveCustomer = $"{dbSchema}.uspCustomerSave";
+        public static string GetCustomers = $"{dbSchema}.uspCustomersGet";
+    }
 }

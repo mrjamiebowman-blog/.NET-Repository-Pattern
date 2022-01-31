@@ -9,7 +9,7 @@ using System.Linq;
 using System.Threading.Tasks;
 
 namespace RepositoryPattern.Data.Repositories;
-    
+
 public class SqlCustomersRepository : BaseSqlRepository, ICustomersRepository
 {
     public async Task<Customer> CreateAsync(Customer model)
@@ -104,11 +104,6 @@ public class SqlCustomersRepository : BaseSqlRepository, ICustomersRepository
         {
             throw ex;
         }
-    }
-
-    public Task InitDb()
-    {
-        throw new NotImplementedException();
     }
 
     public async Task<Customer> SaveAsync(Customer model, bool upsert = true)

@@ -11,5 +11,4 @@ public interface ICustomersRepository
     Task DeleteByIdAsync(dynamic id);
     Task<Customer> CreateAsync(Customer model);
     Task<Customer> SaveAsync(Customer model, bool upsert = true);
-    Task InitDb();
 }
