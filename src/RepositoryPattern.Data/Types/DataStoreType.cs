@@ -1,9 +1,8 @@
-﻿namespace RepositoryPattern.Data.Types
+﻿namespace RepositoryPattern.Data.Types;
+    
+public enum DataStoreType
 {
-    public enum DataStoreType
-    {
-        MSSQL,
-        MongoDB,
-        Postgres
-    }
+    MSSQL,
+    MongoDB,
+    Postgres
 }

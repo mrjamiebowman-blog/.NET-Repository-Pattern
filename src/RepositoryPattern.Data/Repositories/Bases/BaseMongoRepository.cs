@@ -1,32 +1,29 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using MongoDB.Driver;
+﻿using MongoDB.Driver;
+using System;
 
-namespace RepositoryPattern.Data.Repositories.Bases
+namespace RepositoryPattern.Data.Repositories.Bases;
+
+public class BaseMongoRepository : BaseRepository
 {
-    public class BaseMongoRepository : BaseRepository
+    protected MongoClient _mongo;
+
+    protected string _dbName = "mrjb_repopattern_mongo";
+
+    public static class Databases 
     {
-        protected MongoClient _mongo;
+        public static string Customers = $"customers";
 
-        protected string _dbName = "mrjb_repopattern_mongo";
+    }
 
-        public static class Databases 
+    public BaseMongoRepository()
+    {
+        try
         {
-            public static string Customers = $"customers";
-
+            _mongo = new MongoClient("mongodb://root:555gpah4jzetczpf@127.0.0.1:27017");
         }
-
-        public BaseMongoRepository()
+        catch (Exception ex)
         {
-            try
-            {
-                _mongo = new MongoClient("mongodb://root:555gpah4jzetczpf@127.0.0.1:27017");
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
+            throw ex;
         }
     }
 }
