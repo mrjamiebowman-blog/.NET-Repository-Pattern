@@ -24,10 +24,10 @@ public class BasePostgreSqlRepository : BaseRepository
 
     public static class StoredProcedures
     {
-        public static string CreateCustomer = $"{dbSchema}.uspCustomerCreate";
-        public static string GetCustomer = $"{dbSchema}.uspCustomerGet";
-        public static string DeleteCustomer = $"{dbSchema}.uspCustomerDelete";
-        public static string SaveCustomer = $"{dbSchema}.uspCustomerSave";
-        public static string GetCustomers = $"{dbSchema}.uspCustomersGet";
+        public static string CreateCustomer = $"{dbSchema}.create_customer";
+        public static string GetCustomer = $"{dbSchema}.get_customer";
+        public static string DeleteCustomer = $"{dbSchema}.delete_customer";
+        public static string SaveCustomer = $"{dbSchema}.save_customer";
+        public static string GetCustomers = $"{dbSchema}.get_customers";
     }
 }
