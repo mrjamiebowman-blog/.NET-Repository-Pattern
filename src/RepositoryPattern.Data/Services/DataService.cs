@@ -7,54 +7,49 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
 using RepositoryPattern.Data.Types;
+using RepositoryPattern.Data.Configuration;
 
 namespace RepositoryPattern.Data.Services
 {
     public class DataService : IDataService
     {
         private readonly ICustomersRepository _customersRepository;
-        public IConfiguration Configuration { get; }
-        public readonly DataProviderType ProviderType;
-        
 
-        public DataService()
+        private readonly DatabaseConfiguration _databaseConfiguration;
+
+
+        public DataService(ICustomersRepository customersRepository, DatabaseConfiguration databaseConfiguration)
         {
-
-        }
-
-        public DataService(/*IConfiguration configuration, */ICustomersRepository customersRepository) : this()
-        {
-            //Configuration = configuration;
             _customersRepository = customersRepository;
-
-            ProviderType = GetProviderType();
+            _databaseConfiguration = databaseConfiguration;
         }
 
-        public static void ConfigureServices(IServiceCollection services)
+        public static void ConfigureServices(IServiceCollection services, IConfiguration configuration)
         {
             services.AddTransient<IDataService, DataService>();
 
-            var providerType = GetProviderType();
-            
-            if (providerType == DataProviderType.MSSQL) {
-                // mssql
-                services.AddTransient<ICustomersRepository, SqlCustomersRepository>();
-            } else if (providerType == DataProviderType.MongoDB) {
-                // mongodb
-                services.AddTransient<ICustomersRepository, MongoCustomersRepository>();
-            } else if (providerType == DataProviderType.Postgres) {
-                // postgres
-                services.AddTransient<ICustomersRepository, PostgreSqlCustomersRepository>();
-            } else {
-                // default
-                services.AddTransient<ICustomersRepository, SqlCustomersRepository>();
-            }
-        }
+            // bind database configuration
+            DatabaseConfiguration databaseConfiguration = new DatabaseConfiguration();
+            configuration.GetSection(DatabaseConfiguration.Position).Bind(databaseConfiguration);
+            services.AddSingleton<DatabaseConfiguration>(databaseConfiguration);
 
-        public static DataProviderType GetProviderType()
-        {
-            // hack: should read from config
-            return DataProviderType.MongoDB;
+            DataProviderType dataProviderType = DataProviderType.MSSQL;
+
+            switch (dataProviderType)
+            {
+               case DataProviderType.Postgres:
+                    // postgres
+                    services.AddTransient<ICustomersRepository, PostgreSqlCustomersRepository>();
+                    break;
+                case DataProviderType.MongoDB:
+                    // mongodb
+                    services.AddTransient<ICustomersRepository, MongoCustomersRepository>();
+                    break;
+                default:
+                    // default to MSSQL
+                    services.AddTransient<ICustomersRepository, SqlCustomersRepository>();
+                    break;
+            }
         }
 
         #region Customers

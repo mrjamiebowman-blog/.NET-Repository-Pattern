@@ -3,8 +3,6 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using RepositoryPattern.Data.Repositories;
-using RepositoryPattern.Data.Repositories.Interfaces;
 using RepositoryPattern.Data.Services;
 
 namespace RepositoryPattern
@@ -23,7 +21,8 @@ namespace RepositoryPattern
         {
             services.AddControllersWithViews();
 
-            DataService.ConfigureServices(services);
+            // bind dependency injection and configuration for data service.
+            DataService.ConfigureServices(services, Configuration);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -1,4 +1,4 @@
-using Microsoft.Extensions.Configuration;
+using RepositoryPattern.Data.Configuration;
 using RepositoryPattern.Data.Services;
 using RepositoryPattern.Data.Tests.Repositories;
 using System.Threading.Tasks;
@@ -8,7 +8,6 @@ namespace RepositoryPattern.Data.Tests
 {
     public class CustomersTests
     {
-        private IConfiguration _connfiguration;
         private IDataService _dataService;
 
         public CustomersTests()
@@ -20,10 +19,15 @@ namespace RepositoryPattern.Data.Tests
         public async Task GetCustomersAsyncTests()
         {
             // arrange
-            //_connfiguration = new Mock<IConfiguration>();
 
+            // database configuration
+            var databaseConfig = new DatabaseConfiguration();
+
+            // fake customer repo
             var fakeCustomerRepo = new FakeCustomersRepository();
-            _dataService = new DataService(fakeCustomerRepo);
+
+            // create data service
+            _dataService = new DataService(fakeCustomerRepo, databaseConfig);
 
             // act
             var customers = await _dataService.GetCustomersAsync();
