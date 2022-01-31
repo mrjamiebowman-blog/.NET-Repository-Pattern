@@ -24,7 +24,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "mssql", "mssql", "{E00D0C68
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "postgres", "postgres", "{A3F70A57-5CFF-4FB0-B085-CED1EA09F965}"
 	ProjectSection(SolutionItems) = preProject
-		docker\postgres\db-init.sh = docker\postgres\db-init.sh
 		docker\postgres\db-init.sql = docker\postgres\db-init.sql
 		docker\postgres\Dockerfile = docker\postgres\Dockerfile
 	EndProjectSection
@@ -35,11 +34,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{F31BF859-1
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KafkaModels", "src\KafkaModels\KafkaModels.csproj", "{472EB278-A50E-4E37-A0B1-8DE4E58AF3BA}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RepositoryPattern.Data", "src\RepositoryPattern.Data\RepositoryPattern.Data.csproj", "{82574506-D6B4-4CE8-A529-BD4E696C36EB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MrJB.RepositoryPattern.Data", "src\RepositoryPattern.Data\MrJB.RepositoryPattern.Data.csproj", "{82574506-D6B4-4CE8-A529-BD4E696C36EB}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RepositoryPattern", "src\RepositoryPattern\RepositoryPattern.csproj", "{01CB576C-2DC9-40EB-A1F6-9FE04CE8E5C8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MrJB.RepositoryPattern", "src\RepositoryPattern\MrJB.RepositoryPattern.csproj", "{01CB576C-2DC9-40EB-A1F6-9FE04CE8E5C8}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RepositoryPattern.Data.Tests", "test\RepositoryPattern.Data.Tests\RepositoryPattern.Data.Tests.csproj", "{98BB471D-43F3-4DBD-860A-A922A1B643C6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MrJB.RepositoryPattern.Data.Tests", "test\RepositoryPattern.Data.Tests\MrJB.RepositoryPattern.Data.Tests.csproj", "{98BB471D-43F3-4DBD-860A-A922A1B643C6}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "mongodb", "mongodb", "{7F2F9808-001A-4FB6-819E-FF6D97F60167}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -75,6 +76,7 @@ Global
 		{82574506-D6B4-4CE8-A529-BD4E696C36EB} = {4B17BF57-39D8-4131-9E08-501198B25551}
 		{01CB576C-2DC9-40EB-A1F6-9FE04CE8E5C8} = {4B17BF57-39D8-4131-9E08-501198B25551}
 		{98BB471D-43F3-4DBD-860A-A922A1B643C6} = {F31BF859-18D2-4EFD-B989-5117373CCEC9}
+		{7F2F9808-001A-4FB6-819E-FF6D97F60167} = {C6B30454-A540-46D1-B1A7-15EEFE027DF9}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {8D196391-0C94-4093-B2EE-BC805AAADA90}

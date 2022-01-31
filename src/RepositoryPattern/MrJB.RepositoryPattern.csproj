@@ -12,7 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\RepositoryPattern.Data\RepositoryPattern.Data.csproj" />
+    <ProjectReference Include="..\RepositoryPattern.Data\MrJB.RepositoryPattern.Data.csproj" />
   </ItemGroup>
 
 </Project>
