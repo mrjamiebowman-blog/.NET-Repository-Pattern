@@ -171,3 +171,14 @@ AS $procedure$
 	END;
 $procedure$
 ;
+
+
+
+INSERT INTO public."Addresses" ("AddressId", "City", "Country", "FirstName", "LastName", "Phone", "PostalCode", "State", "Street1", "Street2", "OnCreated", "ModifiedOn")
+	VALUES (1, 'Saint Louis,', 'USA', 'Jamie', 'Bowman', '13361234', '63032', 'MO', 'Street 1', 'Apt 2', current_timestamp, current_timestamp)
+	RETURNING *;
+
+INSERT INTO public."Customers"(
+	"CustomerId", "FirstName", "LastName", "Email", "BirthDate", "BillingAddressId", "ShippingAddressId")
+	VALUES (1, 'Jamie', 'Bowman', 'mrjamiebowman@protonmail.com', '08/01/1983', 1, 1)
+	RETURNING *;
