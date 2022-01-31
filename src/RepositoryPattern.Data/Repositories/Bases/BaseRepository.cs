@@ -1,24 +1,13 @@
-﻿using Microsoft.Extensions.Configuration;
-using System.IO;
+﻿using RepositoryPattern.Data.Configuration;
 
 namespace RepositoryPattern.Data.Repositories.Bases;
-    
+
 public abstract class BaseRepository
 {
-    private IConfigurationRoot root;
-    
-    public BaseRepository()
-    {
-        var configurationBuilder = new ConfigurationBuilder();
-        var path = Path.Combine(Directory.GetCurrentDirectory(), "appsettings.json");
-        configurationBuilder.AddJsonFile(path, false);
+    protected DatabaseConfiguration _databaseConfiguration;
 
-        root = configurationBuilder.Build();
-    }
-
-    public IConfigurationSection GetConfigurationSection(string sectionName)
+    public BaseRepository(DatabaseConfiguration databaseConfiguration)
     {
-        IConfigurationSection section = root.GetSection(sectionName);
-        return section;
+        _databaseConfiguration = databaseConfiguration;
     }
 }

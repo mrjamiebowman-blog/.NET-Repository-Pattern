@@ -1,24 +1,16 @@
-﻿using Microsoft.Extensions.Configuration;
-using Npgsql;
+﻿using Npgsql;
+using RepositoryPattern.Data.Configuration;
 using System.Data;
 
 namespace RepositoryPattern.Data.Repositories.Bases;
-    
+
 public class BasePostgreSqlRepository : BaseRepository
 {
-    private IConfigurationSection _databaseSettings;
-    private IConfigurationSection _settings;
-
     private static string dbSchema = "public";
 
-    public BasePostgreSqlRepository()
+    public IDbConnection GetConnection(PostgresDatabaseConfiguration postgresDatabaseConfiguration)
     {
-        _databaseSettings = GetConfigurationSection("PostgresDatabase");
-    }
-
-    public IDbConnection GetConnection()
-    {
-        var conn = new NpgsqlConnection(_databaseSettings["ConnectionString"]);
+        var conn = new NpgsqlConnection(postgresDatabaseConfiguration.ConnectionString);
         return conn;
     }
 

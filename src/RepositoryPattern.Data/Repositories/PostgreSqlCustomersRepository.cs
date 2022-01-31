@@ -16,7 +16,7 @@ public class PostgreSqlCustomersRepository : BasePostgreSqlRepository, ICustomer
     {
         try
         {
-            using (IDbConnection conn = GetConnection())
+            using (IDbConnection conn = GetConnection(_databaseConfiguration.PostgresDatabase))
             {
                 conn.Open();
 
@@ -43,7 +43,7 @@ public class PostgreSqlCustomersRepository : BasePostgreSqlRepository, ICustomer
     {
         try
         {
-            using (IDbConnection conn = GetConnection())
+            using (IDbConnection conn = GetConnection(_databaseConfiguration.PostgresDatabase))
             {
                 conn.Open();
 
@@ -63,7 +63,7 @@ public class PostgreSqlCustomersRepository : BasePostgreSqlRepository, ICustomer
     {
         try
         {
-            using (IDbConnection conn = GetConnection())
+            using (IDbConnection conn = GetConnection(_databaseConfiguration.PostgresDatabase))
             {
                 conn.Open();
 
@@ -84,7 +84,7 @@ public class PostgreSqlCustomersRepository : BasePostgreSqlRepository, ICustomer
     {
         try
         {
-            using (IDbConnection conn = GetConnection())
+            using (IDbConnection conn = GetConnection(_databaseConfiguration.PostgresDatabase))
             {
                 conn.Open();
 
@@ -110,7 +110,7 @@ public class PostgreSqlCustomersRepository : BasePostgreSqlRepository, ICustomer
     {
         try
         {
-            using (IDbConnection conn = GetConnection())
+            using (IDbConnection conn = GetConnection(_databaseConfiguration.PostgresDatabase))
             {
                 conn.Open();
 
