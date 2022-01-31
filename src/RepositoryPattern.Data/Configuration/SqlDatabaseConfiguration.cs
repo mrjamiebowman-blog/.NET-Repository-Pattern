@@ -1,9 +1,8 @@
-﻿namespace RepositoryPattern.Data.Configuration
+﻿namespace RepositoryPattern.Data.Configuration;
+    
+public class SqlDatabaseConfiguration
 {
-    public class SqlDatabaseConfiguration
-    {
-        public const string Position = "SqlDatabase";
+    public const string Position = "SqlDatabase";
 
-        public string ConnectionString { get; set; }
-    }
+    public string ConnectionString { get; set; }
 }

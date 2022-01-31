@@ -1,9 +1,8 @@
-﻿namespace RepositoryPattern.Data.Configuration
+﻿namespace RepositoryPattern.Data.Configuration;
+    
+public class PostgresDatabaseConfiguration
 {
-    public class PostgresDatabaseConfiguration
-    {
-        public const string Position = "PostgresDatabase";
+    public const string Position = "PostgresDatabase";
 
-        public string ConnectionString { get; set; }
-    }
+    public string ConnectionString { get; set; }
 }
