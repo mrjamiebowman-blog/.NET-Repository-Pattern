@@ -11,13 +11,13 @@ namespace RepositoryPattern.Data.Extensions
                 return string.Empty;
 
             // TODO: fix
-            var dataStoreType = DataProviderType.MSSQL;
+            var dataStoreType = DataStoreType.MSSQL;
 
-            if (dataStoreType == DataProviderType.MSSQL) {
+            if (dataStoreType == DataStoreType.MSSQL) {
                 return model.CustomerId.ToString();
-            } else if (dataStoreType == DataProviderType.MongoDB) {
+            } else if (dataStoreType == DataStoreType.MongoDB) {
                 return model.CustomerIdMg.ToString();
-            } else if (dataStoreType == DataProviderType.Postgres) {
+            } else if (dataStoreType == DataStoreType.Postgres) {
                 return model.CustomerId.ToString();
             }
 

@@ -6,7 +6,7 @@ namespace RepositoryPattern.Data.Configuration
     {
         public const string Position = "DatabaseConfiguration";
 
-        public DataProviderType DataStore { get; set; }
+        public DataStoreType DataStore { get; set; }
 
         public SqlDatabaseConfiguration SqlDatabase { get; set; }
 

@@ -33,15 +33,15 @@ namespace RepositoryPattern.Data.Services
             configuration.GetSection(DatabaseConfiguration.Position).Bind(databaseConfiguration);
             services.AddSingleton<DatabaseConfiguration>(databaseConfiguration);
 
-            DataProviderType dataProviderType = DataProviderType.MSSQL;
+            DataStoreType dataProviderType = DataStoreType.MSSQL;
 
             switch (dataProviderType)
             {
-               case DataProviderType.Postgres:
+               case DataStoreType.Postgres:
                     // postgres
                     services.AddTransient<ICustomersRepository, PostgreSqlCustomersRepository>();
                     break;
-                case DataProviderType.MongoDB:
+                case DataStoreType.MongoDB:
                     // mongodb
                     services.AddTransient<ICustomersRepository, MongoCustomersRepository>();
                     break;
