@@ -73,7 +73,7 @@ ALTER TABLE public."Customers"
 
 
 
-CREATE OR REPLACE PROCEDURE public.uspgetcustomers(firstname character, lastname character, email character, city character, state character, country character, pageno bigint DEFAULT 1, pagesize integer DEFAULT 25, sortcolumn character DEFAULT 'CustomerId'::bpchar, sortorder character DEFAULT 'ASC'::bpchar)
+CREATE OR REPLACE PROCEDURE public.get_customers(firstname character, lastname character, email character, city character, state character, country character, pageno bigint DEFAULT 1, pagesize integer DEFAULT 25, sortcolumn character DEFAULT 'CustomerId'::bpchar, sortorder character DEFAULT 'ASC'::bpchar)
  LANGUAGE plpgsql
 AS $procedure$
 	BEGIN	
