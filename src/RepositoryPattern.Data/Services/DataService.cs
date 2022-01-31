@@ -33,7 +33,8 @@ public class DataService : IDataService
         configuration.GetSection(DatabaseConfiguration.Position).Bind(databaseConfiguration);
         services.AddSingleton<DatabaseConfiguration>(databaseConfiguration);
 
-        DataStoreType dataProviderType = DataStoreType.MSSQL;
+        // data store
+        DataStoreType dataProviderType = databaseConfiguration.DataStore;
 
         switch (dataProviderType)
         {
