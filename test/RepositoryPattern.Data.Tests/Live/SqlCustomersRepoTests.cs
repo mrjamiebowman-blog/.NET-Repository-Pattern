@@ -17,12 +17,6 @@ public class SqlCustomersRepoTests
     }
 
     [Fact]
-    public async Task InitDbTests()
-    {
-        await _customerRepo.InitDb();
-    }
-
-    [Fact]
     public async Task GetCustomersAsyncTests()
     {
         // fyi: you may need to update this id
