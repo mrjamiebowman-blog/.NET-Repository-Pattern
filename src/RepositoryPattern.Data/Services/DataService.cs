@@ -56,6 +56,7 @@ namespace RepositoryPattern.Data.Services
 
         public async Task<Customer> CreateCustomerAsync(Customer model)
         {
+            // TODO: validation
             return await _customersRepository.CreateAsync(model);
         }
 
@@ -84,9 +85,15 @@ namespace RepositoryPattern.Data.Services
 
         public async Task<Customer> SaveCustomerAsync(Customer model, bool upsert = true)
         {
+            // TOOD: validation
             return await _customersRepository.SaveAsync(model, upsert);
         }
 
+        /// <summary>
+        /// Used to calculate customers age before saving.
+        /// </summary>
+        /// <param name="birthdate"></param>
+        /// <returns></returns>
         private Task<int?> GetCustomerAgeAsync(DateTime? birthdate)
         {
             if (birthdate == null)
