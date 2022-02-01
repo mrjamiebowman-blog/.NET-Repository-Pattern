@@ -1,5 +1,6 @@
 ﻿using Dapper;
 using KafkaModels.Models.Customer;
+using RepositoryPattern.Data.Configuration;
 using RepositoryPattern.Data.Repositories.Bases;
 using RepositoryPattern.Data.Repositories.Interfaces;
 using System;
@@ -12,11 +13,16 @@ namespace RepositoryPattern.Data.Repositories;
 
 public class PostgreSqlCustomersRepository : BasePostgreSqlRepository, ICustomersRepository
 {
+    public PostgreSqlCustomersRepository(DatabaseConfiguration databaseConfiguration) : base(databaseConfiguration)
+    {
+
+    }
+
     public async Task<Customer> CreateAsync(Customer model)
     {
         try
         {
-            using (IDbConnection conn = GetConnection(_databaseConfiguration.PostgresDatabase))
+            using (IDbConnection conn = GetConnection())
             {
                 conn.Open();
 
@@ -43,7 +49,7 @@ public class PostgreSqlCustomersRepository : BasePostgreSqlRepository, ICustomer
     {
         try
         {
-            using (IDbConnection conn = GetConnection(_databaseConfiguration.PostgresDatabase))
+            using (IDbConnection conn = GetConnection())
             {
                 conn.Open();
 
@@ -63,7 +69,7 @@ public class PostgreSqlCustomersRepository : BasePostgreSqlRepository, ICustomer
     {
         try
         {
-            using (IDbConnection conn = GetConnection(_databaseConfiguration.PostgresDatabase))
+            using (IDbConnection conn = GetConnection())
             {
                 conn.Open();
 
@@ -84,7 +90,7 @@ public class PostgreSqlCustomersRepository : BasePostgreSqlRepository, ICustomer
     {
         try
         {
-            using (IDbConnection conn = GetConnection(_databaseConfiguration.PostgresDatabase))
+            using (IDbConnection conn = GetConnection())
             {
                 conn.Open();
 
@@ -110,7 +116,7 @@ public class PostgreSqlCustomersRepository : BasePostgreSqlRepository, ICustomer
     {
         try
         {
-            using (IDbConnection conn = GetConnection(_databaseConfiguration.PostgresDatabase))
+            using (IDbConnection conn = GetConnection())
             {
                 conn.Open();
 

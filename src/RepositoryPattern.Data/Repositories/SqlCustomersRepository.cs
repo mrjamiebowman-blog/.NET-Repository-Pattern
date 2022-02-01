@@ -1,5 +1,6 @@
 ﻿using Dapper;
 using KafkaModels.Models.Customer;
+using RepositoryPattern.Data.Configuration;
 using RepositoryPattern.Data.Repositories.Bases;
 using RepositoryPattern.Data.Repositories.Interfaces;
 using System;
@@ -12,6 +13,11 @@ namespace RepositoryPattern.Data.Repositories;
 
 public class SqlCustomersRepository : BaseSqlRepository, ICustomersRepository
 {
+    public SqlCustomersRepository(DatabaseConfiguration databaseConfiguration) : base(databaseConfiguration)
+    {
+
+    }
+
     public async Task<Customer> CreateAsync(Customer model)
     {
         try

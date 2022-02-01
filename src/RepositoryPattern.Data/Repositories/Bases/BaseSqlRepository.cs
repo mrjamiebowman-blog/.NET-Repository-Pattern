@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Configuration;
+using RepositoryPattern.Data.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 
@@ -6,19 +7,18 @@ namespace RepositoryPattern.Data.Repositories.Bases;
 
 public abstract class BaseSqlRepository : BaseRepository
 {
-    private IConfigurationSection _databaseSettings;
-    private IConfigurationSection _settings;
+    private readonly SqlDatabaseConfiguration configuration;
 
     private static string dbSchema = "dbo";
 
-    public BaseSqlRepository()
+    public BaseSqlRepository(DatabaseConfiguration databaseConfiguration) : base(databaseConfiguration)
     {
-        _databaseSettings = GetConfigurationSection("SqlDatabase");
+        configuration = databaseConfiguration.SqlDatabase;
     }
 
     public IDbConnection GetConnection()
     {
-        var conn = new SqlConnection(_databaseSettings["ConnectionString"]);
+        var conn = new SqlConnection(configuration.ConnectionString);
         return conn;
     }
 

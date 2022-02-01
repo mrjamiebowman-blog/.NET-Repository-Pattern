@@ -6,11 +6,18 @@ namespace RepositoryPattern.Data.Repositories.Bases;
 
 public class BasePostgreSqlRepository : BaseRepository
 {
+    private readonly PostgresDatabaseConfiguration _postgresDatabaseConfiguration;
+
     private static string dbSchema = "public";
 
-    public IDbConnection GetConnection(PostgresDatabaseConfiguration postgresDatabaseConfiguration)
+    public BasePostgreSqlRepository(DatabaseConfiguration databaseConfiguration) : base(databaseConfiguration)
     {
-        var conn = new NpgsqlConnection(postgresDatabaseConfiguration.ConnectionString);
+        _postgresDatabaseConfiguration = databaseConfiguration.PostgresDatabase;
+    }
+
+    public IDbConnection GetConnection()
+    {
+        var conn = new NpgsqlConnection(_postgresDatabaseConfiguration.ConnectionString);
         return conn;
     }
 

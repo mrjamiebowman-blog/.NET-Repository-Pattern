@@ -1,25 +1,30 @@
 ﻿using MongoDB.Driver;
+using MrJB.RepositoryPattern.Data.Configuration;
+using RepositoryPattern.Data.Configuration;
 using System;
 
 namespace RepositoryPattern.Data.Repositories.Bases;
 
 public class BaseMongoRepository : BaseRepository
 {
+    private readonly MongoDbConfiguration configuration;
+
     protected MongoClient _mongo;
 
     protected string _dbName = "mrjb_repopattern_mongo";
 
-    public static class Databases 
+    public static class Databases
     {
         public static string Customers = $"customers";
 
     }
 
-    public BaseMongoRepository()
+    public BaseMongoRepository(DatabaseConfiguration databaseConfiguration) : base(databaseConfiguration)
     {
         try
         {
-            _mongo = new MongoClient("mongodb://root:555gpah4jzetczpf@127.0.0.1:27017");
+            configuration = databaseConfiguration.MongoDb;
+            _mongo = new MongoClient(configuration.ConnectionString);
         }
         catch (Exception ex)
         {

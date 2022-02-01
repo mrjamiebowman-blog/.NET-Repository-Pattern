@@ -1,44 +1,22 @@
 ﻿using KafkaModels.Models.Customer;
 using MongoDB.Bson;
+using MongoDB.Bson.Serialization;
 using MongoDB.Driver;
+using RepositoryPattern.Data.Configuration;
+using RepositoryPattern.Data.Repositories.Bases;
 using RepositoryPattern.Data.Repositories.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using MongoDB.Bson.Serialization;
-using RepositoryPattern.Data.Repositories.Bases;
 
 namespace RepositoryPattern.Data.Repositories;
-    
+
 public class MongoCustomersRepository : BaseMongoRepository, ICustomersRepository
 {
-    public MongoCustomersRepository() : base()
+
+    public MongoCustomersRepository(DatabaseConfiguration databaseConfiguration) : base(databaseConfiguration)
     {
 
-    }
-
-    public async Task InitDb()
-    {
-        try
-        {
-            var db = _mongo.GetDatabase(_dbName);
-
-            IMongoCollection<BsonDocument> collCustomers = db.GetCollection<BsonDocument>(Databases.Customers);
-
-            // customer
-            var model = new Customer();
-            model.FirstName = "Jamie";
-            model.LastName = "Bowman";
-            model.Email = "tes2t@test.com";
-            model.Birthdate = new DateTime(1983, 08, 07, 0, 0, 0);
-
-            // save
-            await collCustomers.InsertOneAsync(model.ToBsonDocument());
-        }
-        catch (Exception ex)
-        {
-            throw ex;
-        }
     }
 
     public async Task<Customer> CreateAsync(Customer model)
