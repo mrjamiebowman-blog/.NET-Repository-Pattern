@@ -21,7 +21,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\KafkaModels\KafkaModels.csproj" />
-    <ProjectReference Include="..\MrJB.KafkaModels\MrJB.KafkaModels.csproj" />
   </ItemGroup>
 
   <ItemGroup>
