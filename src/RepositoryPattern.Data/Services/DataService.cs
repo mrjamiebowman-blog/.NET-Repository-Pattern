@@ -1,15 +1,15 @@
 ﻿using KafkaModels.Models.Customer;
 using Microsoft.Extensions.DependencyInjection;
-using RepositoryPattern.Data.Repositories;
-using RepositoryPattern.Data.Repositories.Interfaces;
+using MrJB.RepositoryPattern.Data.Repositories;
+using MrJB.RepositoryPattern.Data.Repositories.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
-using RepositoryPattern.Data.Types;
-using RepositoryPattern.Data.Configuration;
+using MrJB.RepositoryPattern.Data.Types;
+using MrJB.RepositoryPattern.Data.Configuration;
 
-namespace RepositoryPattern.Data.Services;
+namespace MrJB.RepositoryPattern.Data.Services;
 
 public class DataService : IDataService
 {

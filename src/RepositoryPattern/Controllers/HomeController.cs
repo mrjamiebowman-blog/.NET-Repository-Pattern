@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using RepositoryPattern.Models;
+using MrJB.RepositoryPattern.Models;
 using System.Diagnostics;
 
-namespace RepositoryPattern.Controllers;
+namespace MrJB.RepositoryPattern.Controllers;
 
 public class HomeController : Controller
 {

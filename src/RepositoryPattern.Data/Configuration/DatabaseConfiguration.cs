@@ -1,7 +1,7 @@
 ﻿using MrJB.RepositoryPattern.Data.Configuration;
-using RepositoryPattern.Data.Types;
+using MrJB.RepositoryPattern.Data.Types;
 
-namespace RepositoryPattern.Data.Configuration;
+namespace MrJB.RepositoryPattern.Data.Configuration;
     
 public class DatabaseConfiguration
 {

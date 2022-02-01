@@ -1,4 +1,4 @@
-﻿namespace RepositoryPattern.Data.Types;
+﻿namespace MrJB.RepositoryPattern.Data.Types;
     
 public enum DataStoreType
 {

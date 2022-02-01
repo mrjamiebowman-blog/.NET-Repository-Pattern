@@ -1,9 +1,9 @@
 ﻿using MongoDB.Driver;
 using MrJB.RepositoryPattern.Data.Configuration;
-using RepositoryPattern.Data.Configuration;
+using MrJB.RepositoryPattern.Data.Configuration;
 using System;
 
-namespace RepositoryPattern.Data.Repositories.Bases;
+namespace MrJB.RepositoryPattern.Data.Repositories.Bases;
 
 public class BaseMongoRepository : BaseRepository
 {

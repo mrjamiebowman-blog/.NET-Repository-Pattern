@@ -1,7 +1,7 @@
 ﻿using KafkaModels.Models.Customer;
-using RepositoryPattern.Data.Types;
+using MrJB.RepositoryPattern.Data.Types;
 
-namespace RepositoryPattern.Data.Extensions;
+namespace MrJB.RepositoryPattern.Data.Extensions;
     
 public static class CustomerExtension
 {

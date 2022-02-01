@@ -1,10 +1,10 @@
 ﻿using KafkaModels.Models.Customer;
-using RepositoryPattern.Data.Repositories.Interfaces;
+using MrJB.RepositoryPattern.Data.Repositories.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace RepositoryPattern.Data.Tests.Repositories;
+namespace MrJB.RepositoryPattern.Data.Tests.Repositories;
 
 public class FakeCustomersRepository : ICustomersRepository
 {

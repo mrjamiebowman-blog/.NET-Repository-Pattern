@@ -1,15 +1,15 @@
 ﻿using Dapper;
 using KafkaModels.Models.Customer;
-using RepositoryPattern.Data.Configuration;
-using RepositoryPattern.Data.Repositories.Bases;
-using RepositoryPattern.Data.Repositories.Interfaces;
+using MrJB.RepositoryPattern.Data.Configuration;
+using MrJB.RepositoryPattern.Data.Repositories.Bases;
+using MrJB.RepositoryPattern.Data.Repositories.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace RepositoryPattern.Data.Repositories;
+namespace MrJB.RepositoryPattern.Data.Repositories;
 
 public class PostgreSqlCustomersRepository : BasePostgreSqlRepository, ICustomersRepository
 {

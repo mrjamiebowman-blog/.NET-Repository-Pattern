@@ -1,10 +1,10 @@
-using RepositoryPattern.Data.Configuration;
-using RepositoryPattern.Data.Services;
-using RepositoryPattern.Data.Tests.Repositories;
+using MrJB.RepositoryPattern.Data.Configuration;
+using MrJB.RepositoryPattern.Data.Services;
+using MrJB.RepositoryPattern.Data.Tests.Repositories;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace RepositoryPattern.Data.Tests;
+namespace MrJB.RepositoryPattern.Data.Tests;
 
 public class CustomersTests
 {

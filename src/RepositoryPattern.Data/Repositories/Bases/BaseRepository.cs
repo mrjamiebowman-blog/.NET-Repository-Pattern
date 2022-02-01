@@ -1,6 +1,6 @@
-﻿using RepositoryPattern.Data.Configuration;
+﻿using MrJB.RepositoryPattern.Data.Configuration;
 
-namespace RepositoryPattern.Data.Repositories.Bases;
+namespace MrJB.RepositoryPattern.Data.Repositories.Bases;
 
 public abstract class BaseRepository
 {

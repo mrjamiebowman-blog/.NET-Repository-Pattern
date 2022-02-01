@@ -3,9 +3,9 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using RepositoryPattern.Data.Services;
+using MrJB.RepositoryPattern.Data.Services;
 
-namespace RepositoryPattern;
+namespace MrJB.RepositoryPattern;
 
 public class Startup
 {

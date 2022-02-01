@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace RepositoryPattern.Data.Repositories.Interfaces;
+namespace MrJB.RepositoryPattern.Data.Repositories.Interfaces;
     
 public interface ICustomersRepository
 {

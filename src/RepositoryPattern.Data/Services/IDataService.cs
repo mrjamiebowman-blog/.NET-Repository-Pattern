@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace RepositoryPattern.Data.Services;
+namespace MrJB.RepositoryPattern.Data.Services;
     
 public interface IDataService
 {

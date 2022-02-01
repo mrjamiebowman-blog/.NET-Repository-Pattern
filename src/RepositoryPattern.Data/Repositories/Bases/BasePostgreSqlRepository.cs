@@ -1,8 +1,8 @@
 ﻿using Npgsql;
-using RepositoryPattern.Data.Configuration;
+using MrJB.RepositoryPattern.Data.Configuration;
 using System.Data;
 
-namespace RepositoryPattern.Data.Repositories.Bases;
+namespace MrJB.RepositoryPattern.Data.Repositories.Bases;
 
 public class BasePostgreSqlRepository : BaseRepository
 {

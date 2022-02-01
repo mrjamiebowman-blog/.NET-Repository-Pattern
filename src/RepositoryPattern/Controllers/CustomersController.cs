@@ -2,13 +2,13 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using MongoDB.Bson;
-using RepositoryPattern.Data.Services;
-using RepositoryPattern.Models;
+using MrJB.RepositoryPattern.Data.Services;
+using MrJB.RepositoryPattern.Models;
 using System;
 using System.Diagnostics;
 using System.Threading.Tasks;
 
-namespace RepositoryPattern.Controllers;
+namespace MrJB.RepositoryPattern.Controllers;
 
 public class CustomersController : Controller
 {

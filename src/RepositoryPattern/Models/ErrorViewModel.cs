@@ -1,6 +1,6 @@
 using System;
 
-namespace RepositoryPattern.Models;
+namespace MrJB.RepositoryPattern.Models;
 
 public class ErrorViewModel
 {

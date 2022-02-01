@@ -2,14 +2,14 @@
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization;
 using MongoDB.Driver;
-using RepositoryPattern.Data.Configuration;
-using RepositoryPattern.Data.Repositories.Bases;
-using RepositoryPattern.Data.Repositories.Interfaces;
+using MrJB.RepositoryPattern.Data.Configuration;
+using MrJB.RepositoryPattern.Data.Repositories.Bases;
+using MrJB.RepositoryPattern.Data.Repositories.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace RepositoryPattern.Data.Repositories;
+namespace MrJB.RepositoryPattern.Data.Repositories;
 
 public class MongoCustomersRepository : BaseMongoRepository, ICustomersRepository
 {

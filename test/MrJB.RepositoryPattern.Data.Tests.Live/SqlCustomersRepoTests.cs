@@ -1,10 +1,10 @@
-﻿//using RepositoryPattern.Data.Repositories;
+﻿//using MrJB.RepositoryPattern.Data.Repositories;
 //using System.Threading.Tasks;
 //using KafkaModels.Models.Customer;
-//using RepositoryPattern.Data.Repositories.Interfaces;
+//using MrJB.RepositoryPattern.Data.Repositories.Interfaces;
 //using Xunit;
 
-//namespace RepositoryPattern.Data.Tests.Live;
+//namespace MrJB.RepositoryPattern.Data.Tests.Live;
 
 //public class SqlCustomersRepoTests
 //{

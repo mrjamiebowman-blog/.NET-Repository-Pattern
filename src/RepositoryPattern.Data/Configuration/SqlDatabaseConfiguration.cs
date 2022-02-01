@@ -1,4 +1,4 @@
-﻿namespace RepositoryPattern.Data.Configuration;
+﻿namespace MrJB.RepositoryPattern.Data.Configuration;
     
 public class SqlDatabaseConfiguration
 {

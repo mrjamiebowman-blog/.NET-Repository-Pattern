@@ -1,9 +1,9 @@
 ﻿using Microsoft.Extensions.Configuration;
-using RepositoryPattern.Data.Configuration;
+using MrJB.RepositoryPattern.Data.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 
-namespace RepositoryPattern.Data.Repositories.Bases;
+namespace MrJB.RepositoryPattern.Data.Repositories.Bases;
 
 public abstract class BaseSqlRepository : BaseRepository
 {
