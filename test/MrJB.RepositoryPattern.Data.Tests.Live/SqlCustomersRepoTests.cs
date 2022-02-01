@@ -1,6 +1,6 @@
 ﻿//using MrJB.RepositoryPattern.Data.Repositories;
 //using System.Threading.Tasks;
-//using KafkaModels.Models.Customer;
+//using MrJB.KafkaModels.Models.Customer;
 //using MrJB.RepositoryPattern.Data.Repositories.Interfaces;
 //using Xunit;
 
