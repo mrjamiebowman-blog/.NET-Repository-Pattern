@@ -1,3 +1,0 @@
-[submodule "KafkaModels"]
-	path = MrJB.KafkaModels
-	url = git@github.com:mrjamiebowman-blog/KafkaModels.git
