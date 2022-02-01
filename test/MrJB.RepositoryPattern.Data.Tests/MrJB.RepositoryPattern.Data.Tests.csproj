@@ -23,6 +23,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\src\MrJB.RepositoryPattern.Data\MrJB.RepositoryPattern.Data.csproj" />
     <ProjectReference Include="..\..\src\RepositoryPattern.Data\MrJB.RepositoryPattern.Data.csproj" />
   </ItemGroup>
 

@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.32002.261
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.32014.148
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{468642FA-0290-4F72-ACE3-B0B91B3B0E82}"
 	ProjectSection(SolutionItems) = preProject
@@ -40,9 +40,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MrJB.RepositoryPattern.Data
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MrJB.RepositoryPattern", "src\MrJB.RepositoryPattern\MrJB.RepositoryPattern.csproj", "{BF582F8A-306D-4AD9-A01C-300FC452B3BA}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MrJB.RepositoryPattern.Data", "src\MrJB.RepositoryPattern.Data\MrJB.RepositoryPattern.Data.csproj", "{1D87DA80-558F-47E6-B2BA-1CC9461DB1D1}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MrJB.KafkaModels", "src\MrJB.KafkaModels\MrJB.KafkaModels.csproj", "{6F501050-09C7-4F72-B229-DD1ABF119E52}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MrJB.RepositoryPattern.Data", "src\MrJB.RepositoryPattern.Data\MrJB.RepositoryPattern.Data.csproj", "{ED1699D7-0D41-4AB5-BA26-258E39B86126}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -62,14 +62,14 @@ Global
 		{BF582F8A-306D-4AD9-A01C-300FC452B3BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BF582F8A-306D-4AD9-A01C-300FC452B3BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BF582F8A-306D-4AD9-A01C-300FC452B3BA}.Release|Any CPU.Build.0 = Release|Any CPU
-		{1D87DA80-558F-47E6-B2BA-1CC9461DB1D1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1D87DA80-558F-47E6-B2BA-1CC9461DB1D1}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1D87DA80-558F-47E6-B2BA-1CC9461DB1D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1D87DA80-558F-47E6-B2BA-1CC9461DB1D1}.Release|Any CPU.Build.0 = Release|Any CPU
 		{6F501050-09C7-4F72-B229-DD1ABF119E52}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{6F501050-09C7-4F72-B229-DD1ABF119E52}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6F501050-09C7-4F72-B229-DD1ABF119E52}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6F501050-09C7-4F72-B229-DD1ABF119E52}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ED1699D7-0D41-4AB5-BA26-258E39B86126}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ED1699D7-0D41-4AB5-BA26-258E39B86126}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ED1699D7-0D41-4AB5-BA26-258E39B86126}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ED1699D7-0D41-4AB5-BA26-258E39B86126}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -82,8 +82,8 @@ Global
 		{50CE968B-D768-4D95-B3E4-8B9B65C2ACA3} = {F31BF859-18D2-4EFD-B989-5117373CCEC9}
 		{D23A33AA-4061-4BB9-8483-220057A60A99} = {F31BF859-18D2-4EFD-B989-5117373CCEC9}
 		{BF582F8A-306D-4AD9-A01C-300FC452B3BA} = {4B17BF57-39D8-4131-9E08-501198B25551}
-		{1D87DA80-558F-47E6-B2BA-1CC9461DB1D1} = {4B17BF57-39D8-4131-9E08-501198B25551}
 		{6F501050-09C7-4F72-B229-DD1ABF119E52} = {4B17BF57-39D8-4131-9E08-501198B25551}
+		{ED1699D7-0D41-4AB5-BA26-258E39B86126} = {4B17BF57-39D8-4131-9E08-501198B25551}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {8D196391-0C94-4093-B2EE-BC805AAADA90}

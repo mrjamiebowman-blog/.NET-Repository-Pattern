@@ -12,6 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\MrJB.KafkaModels\MrJB.KafkaModels.csproj" />
     <ProjectReference Include="..\MrJB.RepositoryPattern.Data\MrJB.RepositoryPattern.Data.csproj" />
     <ProjectReference Include="..\RepositoryPattern.Data\MrJB.RepositoryPattern.Data.csproj" />
   </ItemGroup>
