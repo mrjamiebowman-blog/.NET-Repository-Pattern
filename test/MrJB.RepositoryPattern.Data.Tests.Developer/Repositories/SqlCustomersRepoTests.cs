@@ -4,7 +4,7 @@
 //using MrJB.RepositoryPattern.Data.Repositories.Interfaces;
 //using Xunit;
 
-//namespace MrJB.RepositoryPattern.Data.Tests.Live;
+//namespace MrJB.RepositoryPattern.Data.Tests.Live.Repositories;
 
 //public class SqlCustomersRepoTests
 //{
