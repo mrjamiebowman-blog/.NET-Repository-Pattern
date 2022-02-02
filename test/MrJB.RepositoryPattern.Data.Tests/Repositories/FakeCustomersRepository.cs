@@ -1,5 +1,4 @@
-﻿using KafkaModels.Models.Customer;
-using MrJB.KafkaModels.Models.Customer;
+﻿using MrJB.KafkaModels.Models.Customer;
 using MrJB.RepositoryPattern.Data.Repositories.Interfaces;
 using System;
 using System.Collections.Generic;
