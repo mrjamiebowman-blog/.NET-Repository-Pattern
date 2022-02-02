@@ -34,15 +34,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{F31BF859-1
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "mongodb", "mongodb", "{7F2F9808-001A-4FB6-819E-FF6D97F60167}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MrJB.RepositoryPattern.Data.Tests.Live", "test\MrJB.RepositoryPattern.Data.Tests.Live\MrJB.RepositoryPattern.Data.Tests.Live.csproj", "{50CE968B-D768-4D95-B3E4-8B9B65C2ACA3}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MrJB.RepositoryPattern.Data.Tests", "test\MrJB.RepositoryPattern.Data.Tests\MrJB.RepositoryPattern.Data.Tests.csproj", "{D23A33AA-4061-4BB9-8483-220057A60A99}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MrJB.RepositoryPattern", "src\MrJB.RepositoryPattern\MrJB.RepositoryPattern.csproj", "{BF582F8A-306D-4AD9-A01C-300FC452B3BA}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MrJB.KafkaModels", "src\MrJB.KafkaModels\MrJB.KafkaModels.csproj", "{6F501050-09C7-4F72-B229-DD1ABF119E52}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MrJB.RepositoryPattern.Data", "src\MrJB.RepositoryPattern.Data\MrJB.RepositoryPattern.Data.csproj", "{ED1699D7-0D41-4AB5-BA26-258E39B86126}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MrJB.RepositoryPattern.Data", "src\MrJB.RepositoryPattern.Data\MrJB.RepositoryPattern.Data.csproj", "{ED1699D7-0D41-4AB5-BA26-258E39B86126}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MrJB.RepositoryPattern.Data.Tests.Developer", "test\MrJB.RepositoryPattern.Data.Tests.Developer\MrJB.RepositoryPattern.Data.Tests.Developer.csproj", "{39FAAEDF-52D0-418A-AD47-8B611891CB15}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -50,10 +50,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{50CE968B-D768-4D95-B3E4-8B9B65C2ACA3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{50CE968B-D768-4D95-B3E4-8B9B65C2ACA3}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{50CE968B-D768-4D95-B3E4-8B9B65C2ACA3}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{50CE968B-D768-4D95-B3E4-8B9B65C2ACA3}.Release|Any CPU.Build.0 = Release|Any CPU
 		{D23A33AA-4061-4BB9-8483-220057A60A99}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{D23A33AA-4061-4BB9-8483-220057A60A99}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D23A33AA-4061-4BB9-8483-220057A60A99}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -70,6 +66,10 @@ Global
 		{ED1699D7-0D41-4AB5-BA26-258E39B86126}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ED1699D7-0D41-4AB5-BA26-258E39B86126}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ED1699D7-0D41-4AB5-BA26-258E39B86126}.Release|Any CPU.Build.0 = Release|Any CPU
+		{39FAAEDF-52D0-418A-AD47-8B611891CB15}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{39FAAEDF-52D0-418A-AD47-8B611891CB15}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{39FAAEDF-52D0-418A-AD47-8B611891CB15}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{39FAAEDF-52D0-418A-AD47-8B611891CB15}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -79,11 +79,11 @@ Global
 		{E00D0C68-6F40-4887-8971-2FCFC02C078B} = {C6B30454-A540-46D1-B1A7-15EEFE027DF9}
 		{A3F70A57-5CFF-4FB0-B085-CED1EA09F965} = {C6B30454-A540-46D1-B1A7-15EEFE027DF9}
 		{7F2F9808-001A-4FB6-819E-FF6D97F60167} = {C6B30454-A540-46D1-B1A7-15EEFE027DF9}
-		{50CE968B-D768-4D95-B3E4-8B9B65C2ACA3} = {F31BF859-18D2-4EFD-B989-5117373CCEC9}
 		{D23A33AA-4061-4BB9-8483-220057A60A99} = {F31BF859-18D2-4EFD-B989-5117373CCEC9}
 		{BF582F8A-306D-4AD9-A01C-300FC452B3BA} = {4B17BF57-39D8-4131-9E08-501198B25551}
 		{6F501050-09C7-4F72-B229-DD1ABF119E52} = {4B17BF57-39D8-4131-9E08-501198B25551}
 		{ED1699D7-0D41-4AB5-BA26-258E39B86126} = {4B17BF57-39D8-4131-9E08-501198B25551}
+		{39FAAEDF-52D0-418A-AD47-8B611891CB15} = {F31BF859-18D2-4EFD-B989-5117373CCEC9}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {8D196391-0C94-4093-B2EE-BC805AAADA90}
